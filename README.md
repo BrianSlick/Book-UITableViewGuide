@@ -5,8 +5,8 @@ Written for Xcode 7 and Swift 2
 
 Chapters:
 
-* [Overview](0.Overview/Overview.md)
-* Concepts and Terminology
+* [Overview](00.Overview/Overview.md)
+* [Concepts and Terminology](01.Concepts/Concepts.md)
 * Setup with Code
 * Setup with Interface Builder
 * Setup with Storyboards
@@ -31,3 +31,5 @@ Chapters:
 * Handling Variable Row Heights
 * Custom Header and Footer Views
 * Search UI
+* Working With Core Data
+* Supporting Accessibility
