@@ -33,3 +33,4 @@ Chapters:
 * Search UI
 * Working With Core Data
 * Supporting Accessibility
+* UITableViewController
