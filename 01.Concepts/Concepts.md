@@ -161,7 +161,7 @@ When I was a new programmer learning about delegation for myself, the typical fo
 
 Consider the previous example of setting properties on a fictional table view class. This is effectively saying "Hey, you, tableView... you will have 26 sections." You are directly telling an object what to do, issuing a command. If this were a movie script, it would look like:
 
-ME: Hey tableView, you have 26 sections
+ME: Hey tableView, you have 26 sections</br>
 TABLEVIEW: Understood
 
 The delegation pattern flips the script around. Instead of me telling the object what to do, I design it so that the object can ask questions instead, and I will answer them. So I will be the delegate for the table view, and the script then looks like this:
