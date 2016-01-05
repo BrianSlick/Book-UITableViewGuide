@@ -1,13 +1,13 @@
 # A Reasonably Complete Guide To UITableView
 By Brian Slick
 
-Written for Xcode 7 and Swift 2
+Written for Xcode 7 and Swift 2. Active links are either complete or in-progress chapters. Unlinked items will be written eventually. Feel free to tweet me suggestions [@BrianSlick](http://twitter.com/BrianSlick).
 
 Chapters:
 
 * [Overview](00.Overview/Overview.md)
 * [Concepts and Terminology](01.Concepts/Concepts.md)
-* Setup with Code
+* [Setup with Code](02.SetupWithCode/SetupWithCode.md)
 * Setup with Interface Builder
 * Setup with Storyboards
 * UITableViewCell Styles & Accessories
