@@ -166,15 +166,15 @@ TABLEVIEW: Understood
 
 The delegation pattern flips the script around. Instead of me telling the object what to do, I design it so that the object can ask questions instead, and I will answer them. So I will be the delegate for the table view, and the script then looks like this:
 
-TABLEVIEW: Hey delegate, how many sections should I have?
+TABLEVIEW: Hey delegate, how many sections should I have?</br>
 DELEGATE (ME): You have 26 sections.
 
 I could even be the delegate for multiple table views if the need arose:
 
-TABLEVIEW1: Hey delegate, how many sections should I have?
-DELEGATE (ME): You have 26 sections.
-TABLEVIEW2: Hey delegate, how many sections should I have?
-DELEGATE (ME): You have 5 sections.
+TABLEVIEW1: Hey delegate, how many sections should I have?</br>
+DELEGATE (ME): You have 26 sections.</br>
+TABLEVIEW2: Hey delegate, how many sections should I have?</br>
+DELEGATE (ME): You have 5 sections.</br>
 
 I can answer the question differently for each table view based on certain criteria. Here is what the method signature for this particular question looks like:
 
@@ -190,9 +190,9 @@ We will cover the specifics of what this means later. For right now, notice that
 
 This is promising, but remember with the properties where things really went off the rails is when I needed to start telling the table view how many rows were in each section. How does delegation make that any easier? Well, instead of having 500 different properties, we can structure the question that the table view asks to take into account multiple possibilities.
 
-TABLEVIEW: Hey delegate, how many rows are in section 0?
-DELEGATE (ME): There are 20 rows
-TABLEVIEW: Hey delegate, how many rows are in section 1?
+TABLEVIEW: Hey delegate, how many rows are in section 0?</br>
+DELEGATE (ME): There are 20 rows</br>
+TABLEVIEW: Hey delegate, how many rows are in section 1?</br>
 DELEGATE (ME): There are 5 rows
 
 ...and so on. What this looks like in code is:
