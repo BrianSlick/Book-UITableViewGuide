@@ -19,7 +19,7 @@ public class UITableView : UIScrollView, NSCoding
 
 UITableView is defined as inheriting from UIScrollView. And this is a distinction that is worth pointing out: A table view does not _have_ a scroll view, it **is** a scroll view. It is a scroll view that has been highly customized to display and manage subviews in an orderly fashion, but at its core it is just a scroll view. If you really wanted to, you could slap a bunch of views into any plain UIScrollView and wind up with a visual that is every bit the same as what we see with UITableViews. But hopefully, long before we finish with this series, it will become clear exactly what UITableView provides and does for you, and thus why you likely won't want to try to tackle those aspects on your own.
 
-Since it is fundamentally a scroll view, it is worth remembering that any subviews you add are going to scroll. This will be important later when we talk about UITableViewController. For now, just plant in your mind that if you have a view that you do NOT want to scroll, then you should not add it to a UITableView (or at minimum be prepared to jump through hoops to make it stationary).
+Since it is fundamentally a scroll view, it is worth remembering that any subviews you add are going to scroll. This will be important later when we talk about UITableViewController. For now, just plant in your mind that if you have a view that you do NOT want to scroll, then you should not add it to a UITableView, or at minimum be prepared to jump through hoops to make it stationary.
 
 ## Definitions
 
@@ -29,7 +29,7 @@ Now let's take a look at some definitions:
 
 This may look a little busy, so for now just pick out the key words **section** and **row**.
 
-The **row** is sort of like the basic unit of measurement for table views. Each name in your Contact list appears in a row, er, more specifically appears in a cell view that is shown for that particular row.
+The **row** is sort of like the basic unit of measurement for table views. Each name in your Contact list appears in a row, or more specifically appears in a cell view that is shown for that particular row.
 
 Rows can be grouped together into **sections**. It's a design choice to make, but doing so enables options such as the section headers, which you see in Contacts with the "A", "B", "C" banners as you scroll, and also the strip of letters that can appear on the side of a table view that lets you quickly jump around in the table.
 
@@ -45,13 +45,13 @@ One last piece of terminology for now is the table style. Although table views c
 
 ![Sample table views showing different built-in styles](./images/concepts_table_styles.png)
 
-Nothing has changed about the data that is powering these tables, these are simply alternate visual representations. The difference between them is a single line of code, or one pull-down menu selection in IB. Like everything else visual, table views received a makeover for iOS 7. As you can see here, the two styles are not _that_ different. Prior to iOS 7, the distinction between them was far more dramatic, and in my opinion more useful. These days, my guess is that average users don't even realize there is a difference. The rows are almost exactly the same in each case, so the differences are in the section headers. Notice that Grouped has more vertical space, and a smaller font while forcing all-caps. Notice that Plain still has "Section 2" shown at the top, hovering over the rows. You can observe the Plain table style in action by going to the Contacts app and flipping through your friends, and you can see the Grouped style in the Settings app. In general, if you have a lengthy list of records, the Plain style is probably more appropriate. If you have a short list of items, perhaps not all of the same type such as settings, then Grouped is probably the way to go. But these are style choices to make, and not hard and fast rules that you must abide.
+Nothing has changed about the data that is powering these tables, these are simply alternate visual representations. The difference between them is a single line of code, or one pull-down menu selection in IB. Like everything else visual, table views received a makeover for iOS 7. As you can see here, the two styles are not _that_ different. Prior to iOS 7, the distinction between them was far more dramatic, and in my opinion more useful. These days, my guess is that average users don't even realize there is a difference. The rows are almost exactly the same in each case, so the differences are in the section headers. Notice that Grouped uses more vertical space, and a smaller font while forcing all-caps. Notice that Plain still has "Section 2" shown at the top, hovering over the rows. (Remember that I said previously that all subviews of a scrollview will scroll, so imagine the work that is being done to keep that header view stationary.) You can observe the Plain table style in action by going to the Contacts app and flipping through your friends, and you can see the Grouped style in the Settings app. In general, if you have a lengthy list of records, the Plain style is probably more appropriate. If you have a short list of items, perhaps not all of the same type such as settings, then Grouped is probably the way to go. But these are style choices to make, and not hard and fast rules that you must abide.
 
 ## Customization
 
-We have only just scratched the surface of how to customize a table view visually, and haven't talked about behaviors at all. Just comparing Contacts and Settings, we see things like a column of letters on the right side of the screen, we see switches, we see icons, we see arrows, to say nothing of what happens when we tap on rows. In Contacts we see a person's details, but in Settings we see very different screens upon tapping different rows. And I will say that Apple is mostly using built-in table view capabilities here; your average Twitter app is probably doing all kinds of neat tricks that aren't directly supported without a fair amount of customization. So the question then becomes: How do we customize a table view?
+We have only just scratched the surface of how to customize a table view visually, and haven't talked about behaviors at all. Just comparing Contacts and Settings, we see things like a column of letters on the right side of the screen, we see switches, we see icons, we see arrows, to say nothing of what happens when we tap on rows. In Contacts we see a person's details, but in Settings we see very different screens upon tapping different rows. And I will point out that Apple is mostly using built-in table view capabilities here; your average Twitter app is probably doing all kinds of neat tricks that aren't directly supported without a fair amount of customization. So the question then becomes: How do we customize a table view? To understand why UITableView works the way it does, let us first take a look at a few of the possible choices a class designer can make.
 
-When it comes to customizing any object, the designer of that object has a number of techniques to choose from to support that customization. Let's pretend that UILabel did not provide any means to change the text color; it only shows black text. Your only customization option would be to subclass UILabel, and override some code so that you could get another color.
+When it comes to customizing any object, the designer of that class has a number of techniques to choose from to support that customization. Let's pretend that UILabel did not provide any means to change the text color; it only shows black text. Your only customization option would be to subclass UILabel, and override some code so that you could get another color.
 
 ```objc
 // Objective-C
@@ -63,7 +63,7 @@ public class RedLabel : UILabel
 ```
 This class would override something, probably drawRect, and instead of using black to draw the text, it would use red.
 
-If this is how UILabel actually worked, then let's imagine for a moment what that would mean. Everywhere that you would want to have red text, you could not use a plain UILabel, whether this is in code or IB. In IB, you could still drag a plain UILabel onto your view, but then you'd have to go change the class to RedLabel. In code you'd simply create a RedLabel instead.
+If this is how UILabel actually worked, then let's imagine for a moment what that would mean for developers. Everywhere that you would want to have red text, you could not use a plain UILabel, whether this is in code or IB. In IB, you could still drag a plain UILabel onto your view, but then you'd have to go change the class to RedLabel. In code you'd simply create a RedLabel instead. Every time you want red text.
 
 And this only gets us one color. Now I want a blue label, then I want a green label, etc. Each time I want a new color, I have to make a new subclass. Now I have a dozen or more files that I have to haul around into each new project. And, if want to change a color somewhere, I have to go find that label and change the class. That would not be fun.
 
@@ -81,7 +81,7 @@ aLabel.textColor = UIColor.redColor()
 ```
 Not only is this easier, we don't have to know anything about how UILabel draws the actual text, and we aren't interfering with that process in any way, so we can't screw anything up which is certainly possible with the subclassing route. We are always using UILabel instances, and to change color we simply change one of these lines, or use the color picker in IB. And of course, labels have many options. Font size, font style, just to name a couple. If we had to make subclasses, this would get unwieldy very quickly, with my RedBoldLabel, my RedUnderlineLabel, my RedBoldUnderlineLabel, and so on. Yuck. So having configurable attributes like text color and font makes life much easier.
 
-How does this apply to table views? Well, hopefully the previous example has provide the reason why we wouldn't want to subclass. You can imagine having a 50ItemTableView, a 100ItemTableView, a 30ItemGroupedTableView, just to start. And then, how would you know how many items need to be in that table? In your Contacts, you add people, and you delete people. So would that be the 50ItemTableView or the 500ItemTableView? What if someone has 2000 contacts? And I've only assumed that we don't have any sections to deal with. But Contacts does have them grouped. So I have a 26Section10RowsTableView? Do you know that many people with names beginning with Q or X? Subclassing is often not a very good solution when you don't know the answer in advance, and so is not a good solution here for table views.
+How does this apply to table views? Well, hopefully the previous example has provided the reason why we wouldn't want to subclass. You can imagine having a 50ItemTableView, a 100ItemTableView, a 30ItemGroupedTableView, just to start. And then, how would you know how many items need to be in that table? In your Contacts, you add people, and you delete people. So would that be the 50ItemTableView or the 500ItemTableView? What if someone has 2000 contacts? And I've assumed that we don't have any sections to deal with. But Contacts does have them grouped. So I need a 26Section10RowsTableView? Do you know that many people with names beginning with Q or X? Subclassing is often not a very good solution when you don't know the answer in advance, and so is not a good solution here for table views.
 
 Ok, so how about customizable attributes? Perhaps, and UITableView does indeed have some. But would this be a viable customization avenue for everything we might want to do with a table view? Let's consider for a moment. In Contacts, we have a section for each letter of the alphabet. So, 26 sections in English. And that assumes we use every letter. If a section would be empty, perhaps we wouldn't want to show anything there. Maybe now we're down to 20 sections. And Settings doesn't need that many sections; I count 9 on my phone. So clearly this number needs to vary, so perhaps that would make sense as a property:
 
@@ -120,7 +120,7 @@ tableView.numberOfRowsInSection2 = 20
 ...
 
 ```
-Oh boy. That's a lot of lines of code. And how many would there need to be? The designer of UITableView would have to create every single one of these numberOfRowsInSection# methods. How many should they make? 50? 1000? And keep in mind, the only thing we've accomplished so far is to tell the table view how many sections and rows there. But we haven't defined any text to display.
+Oh boy. That's a lot of lines of code. And how many would there need to be? The designer of UITableView would have to create every single one of these numberOfRowsInSection# properties. How many should they make? 50? 1000? And keep in mind, the only thing we've accomplished so far is to tell the table view how many sections and rows there are. But we haven't defined any text to display.
 
 ```objc
 // Objective-C
@@ -153,11 +153,11 @@ tableView.textForRow3InSection1 = "Brian"
 ```
 It just gets worse and worse. Look at all of the various elements that appear in a given row in the Settings app, and then imagine what that would require in terms of these properties. And keep in mind, every time we list these out here, the designer of UITableView has no idea how many to make. Even if they put 500 of them in there, eventually someone will need 1000 and then they can't use UITableView.
 
-So we've established that subclassing would be ugly. Adding configurable properties, at least for things like this, would be as ugly if not worse. So what does that leave? Well, I can't speak to every possible scenario that has been envisioned in the history of computer science, but in the realm of object oriented programming in general and Apple's libraries in particular, a common solution for this kind of problem is to use **delegation**.
+So we've established that subclassing would be ugly. Adding configurable properties - at least for things like this - while it could conceivably be done more cleanly than I've shown here, would likely still be as ugly overall as subclassing. So what does that leave? Well, I can't speak to every possible scenario that has been envisioned in the history of computer science, but in the realm of object oriented programming in general and Apple's libraries in particular, a common solution for this kind of problem is to use **delegation**.
 
 I wrote all of the previous examples to help answer the question of why UITableView is designed the way it is. I do not mean for this to be an exhaustive explanation of each of these programming concepts, nor do I mean to provide an exhaustive explanation of delegation. So let's talk about it briefly here, but if you still feel that you don't understand delegation, then that is a topic that you'll need to research further elsewhere. It is a very commonly used pattern on all of Apple's platforms, so you need to understand it, and time spent learning it will not be wasted in any way.
 
-When I was a new programmer learning about delegation for myself, the typical form of explanation was along the lines of "one object doing something on behalf of another object". While this is unquestionably true, I was nevertheless frustrated by this explanation as I never really felt that it helped to nail the concept down in my mind. So anything you've read elsewhere about delegation is likely accurate, but allow me to place a spin on it that would have helped me when I learning.
+When I was a new programmer learning about delegation for myself, the typical form of explanation was along the lines of "one object doing something on behalf of another object". While this is unquestionably true, I was nevertheless frustrated by this explanation as I never really felt that it helped to nail the concept down in my mind. So anything you've read elsewhere about delegation is likely accurate, but allow me to place a spin on it that would have helped me when I was learning.
 
 Consider the previous example of setting properties on a fictional table view class. This is effectively saying "Hey, you, tableView... you will have 26 sections." You are directly telling an object what to do, issuing a command. If this were a movie script, it would look like:
 
@@ -176,7 +176,7 @@ DELEGATE (ME): You have 26 sections.
 TABLEVIEW2: Hey delegate, how many sections should I have?
 DELEGATE (ME): You have 5 sections.
 
-I can answer the question differently for each table view based on certain criteria. Here is what the method for this particular question looks like:
+I can answer the question differently for each table view based on certain criteria. Here is what the method signature for this particular question looks like:
 
 ```objc
 // Objective-C
@@ -207,13 +207,26 @@ DELEGATE (ME): There are 5 rows
 func tableView(_ tableView: UITableView,
  numberOfRowsInSection section: Int) -> Int
 ```
-Notice this time we have 2 input parameters, the table view and section index. This is how the table view asks me a question, and the return value is how I answer it. Now I'm not going to pretend that the answer to this question will be easy. If you set your data structure up right, then it should be reasonably easy. But if you don't, you could wind up in if/else if/else if/else hell really quickly trying to answer these questions. By the time we're done with this series, you'll hopefully have the tools you need to avoid that.
+Notice this time we have 2 input parameters, a table view and a section index. This is how the table view asks me this question, and the return value is how I answer it. Now I'm not going to pretend that the answer to this question will be easy. If you set your data structure up right, then it should be reasonably easy. But if you don't, you could wind up in if/else if/else if/else hell really quickly trying to answer these questions. By the time we're done with this series, you'll hopefully have the tools you need to avoid that.
 
 The table view might not only ask questions, it can also provide statements, ex:
 
 TABLEVIEW: Hey delegate, the user tapped row 5 in section 2.
 
-The table view won't expect a response in this case, it is just letting me know that something happened. Once I know about that, I can write code that does something useful, such as showing my contact's details.
+The table view won't expect a response in this case, it is just letting me know that something happened. Once I know about that, I can write code that does something useful, such as showing my contact's details. In code, this statement looks like:
+
+```objc
+// Objective-C
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+```
+```swift
+// Swift
+optional func tableView(_ tableView: UITableView,
+didSelectRowAtIndexPath indexPath: NSIndexPath)
+```
+
+A couple of things to notice here. First, there is no return value, and that's usually going to be your clue that the source object, in this case the table view, isn't really expecting you to do anything. This is simply the way that the table view informs you that this action took place. If that action is something you want to know about, then you implement this method; if not, you don't. Next, notice this is our first appearance of NSIndexPath. Remember this is basically our coordinate system for table views, and this is how the table view tells us which row in which section was tapped.
 
 All of this leads up to the way I wish someone had explained delegation to me when I was learning. A class can be designed to ask questions or make statements. The delegate is the object that will answer those questions or receive those statements. The table view wants to know how many sections it should have. Who will answer that question? That is the delegate. Who needs to know when a row has been tapped? That is the delegate. And for table views, it will mostly commonly be the view controller serving as the delegate.
 
@@ -221,9 +234,38 @@ So in delegation, the are 2 key players: the source object and the delegate obje
 
 A protocol is simply a list of method names. It provides no functionality in and of itself. The author of a class that will depend on delegation will also need to define a protocol. This is where the author will declare the questions the class can ask of the delegate, and the statements the class can make to the delegate. When you create a delegate, you can refer to this protocol and implement the methods that you care about.
 
-UITableView actually provides 2 delegate protocols: **UITableViewDelegate** and **UITableViewDataSource**. Combined they define nearly 50 questions and statements that UITableView can ask or make. And this doesn't even included the ones that are defined for UIScrollView (remember that UITableView is a UIScrollView subclass, and there is indeed a UIScrollViewDelegate protocol) That sounds like a lot, but don't panic; only 2 of them are required. The rest are optional and can be implemented as needed. There will be delegate methods that you use constantly, and there will be delegate methods that you almost never use. The more features of table view that you will want to take advantage of, the more delegate methods you will implement. We will cover many of these methods over the course of this series.
+UITableView actually provides 2 delegate protocols: **UITableViewDelegate** and **UITableViewDataSource**. Combined they define nearly 50 questions and statements that UITableView can ask or make. Here are a few of them:
 
-So not only are there 2 distinct protocols, there are indeed 2 different delegate properties in UITableView:
+```objc
+// Objective-C
+@protocol UITableViewDataSource<NSObject>
+
+@required
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+@optional
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
+...
+@end
+```
+```swift
+// Swift
+public protocol UITableViewDataSource : NSObjectProtocol {
+   public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+   public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+   optional public func numberOfSectionsInTableView(tableView: UITableView) -> Int
+   optional public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+   ...
+}
+```
+
+And this doesn't even include the ones that are defined for UIScrollView (remember that UITableView is a UIScrollView subclass, and there is indeed a UIScrollViewDelegate protocol) That sounds like a lot, but don't panic; only 2 of them are required as seen above. The rest are optional and can be implemented as needed. There will be delegate methods that you use constantly, and there will be delegate methods that you almost never use. The more features of table view that you will want to take advantage of, the more delegate methods you will implement. We will cover many of these methods over the course of this series.
+
+Not only are there 2 distinct protocols, there are indeed 2 different delegate properties in UITableView:
 
 ```objc
 // Objective-C
@@ -239,7 +281,16 @@ So not only are there 2 distinct protocols, there are indeed 2 different delegat
 weak var dataSource: UITableViewDataSource?
 weak var delegate: UITableViewDelegate?
 ```
-Don't be confused by the names. "Delegation" is the programming concept. That concept is concretely implemented here with 2 properties, each conforming to a separate protocol. Only one is _named_ delegate, but these are each delegate objects. In many cases, the same object - typically your view controller - can serve both roles. But there can be separate objects, one performing the DataSource role and the other performing the Delegate role. In my many years of programming table views, I have yet to have the need to use separate objects for these duties. And I honestly could not explain why some methods are in DataSource yet other seemingly similar methods are in Delegate. In theory, certainly all of these methods could be defined under a single protocol. The fact that there are 2 protocols is simply a design choice, most likely imposed because of the sheer number of methods involved.
+Don't be confused by the names; "Delegation" is the programming concept. That concept is concretely implemented here with 2 properties, each conforming to a separate protocol. Only one is _named_ delegate, but these are each delegate objects. In many cases, the same object - typically your view controller - can serve both roles. But there can be separate objects, one performing the DataSource role and the other performing the Delegate role. In my many years of programming table views, I have yet to have the need to use 2 separate objects for these duties. And I honestly could not explain why some methods are in DataSource yet other seemingly similar methods are in Delegate. In theory, certainly all of these methods could be defined under a single protocol. The fact that there are 2 protocols is simply a design choice, most likely imposed because of the sheer number of methods involved.
 
+To summarize all of this:
+* You do not need to subclass UITableView simply to customize the contents. And you should probably _really_ know what you're doing before deciding that subclassing UITableView is the proper course of action.
+* UITableView does provide properties for certain aspects of customization, but these will apply to the table view as a whole, and not aspects that may be different on a per-row basis.
+* UITableView depends primarily on the delegation pattern for customization.
+
+A considerable amount of the rest of the series will be spent studying the various DataSource and Delegate methods.
+
+
+---
 From:
 [A Reasonably Complete Guide to UITableView](https://github.com/BriTerIdeas/Book-UITableViewGuide), by Brian Slick
