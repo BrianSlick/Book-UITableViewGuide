@@ -2,6 +2,8 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
+    @IBOutlet weak var tableView: UITableView!
+    
     // MARK: - UITableViewDataSource Methods
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int

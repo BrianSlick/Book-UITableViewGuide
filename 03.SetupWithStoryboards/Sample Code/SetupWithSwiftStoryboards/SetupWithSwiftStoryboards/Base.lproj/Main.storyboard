@@ -20,6 +20,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YpR-sE-Rx6">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="YFz-RH-eOM"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="xt1-GZ-gyE"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -30,6 +34,9 @@
                             <constraint firstItem="YpR-sE-Rx6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="KPS-C2-116"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="YpR-sE-Rx6" id="eSq-3C-no4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
