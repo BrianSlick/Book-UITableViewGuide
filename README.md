@@ -8,7 +8,7 @@ Chapters:
 * [Overview](00.Overview/Overview.md)
 * [Concepts and Terminology](01.Concepts/Concepts.md)
 * [Setup with Code](02.SetupWithCode/SetupWithCode.md)
-* Setup with Storyboards
+* [Setup with Storyboards](03.SetupWithStoryboards/SetupWithStoryboards.md)
 * Setup with Interface Builder
 * UITableViewController
 * UITableViewCell Styles & Accessories
