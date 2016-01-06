@@ -12,7 +12,7 @@ Create a new iOS project, using the Single View Application template. Name it an
 
 As I said, we are ignoring the Storyboard for now. We will do everything in the ViewController class that was automatically created. For ObjC, we will be dealing exclusively with the .m file.
 
-First things first, let's clear out any unnecessary boilerplate so that we can focus purely on creating a table view. Edit the contents of your file to look like this (you can leave out the comments, I'm just doing that here so that you know what I'm messing with):
+First things first, let's clear out any unnecessary boilerplate so that we can focus purely on creating a table view. Edit the contents of your file to look like this (you can leave out the comments, I'm just doing that here so that you know what file I'm messing with):
 
 ```objc
 // Objective-C
@@ -50,7 +50,7 @@ class ViewController: UIViewController
 
 ```
 
-Next, we pretty much will always want the table view to stay alive as long as this view controller is alive. So it will make sense to have a table view property. This will also let us reference the table view objects from other methods as needed.
+Next, we pretty much will always want the table view to stay alive as long as this view controller is alive. So it will make sense to have a table view property. This will also let us reference the table view object from other methods as needed.
 
 ```objc
 // Objective-C
@@ -69,7 +69,7 @@ class ViewController: UIViewController
 ...
 ```
 
->ObjC comments: As we'll see in the IB and Storyboard chapters, Apple likes using weak properties for IBOutlets these days. I could not disagree more with this general trend, and firmly believe in using strong properties for any object that I wish to have control over the lifespan.
+>Code comments: As we'll see in the IB and Storyboard chapters, Apple likes using weak properties for IBOutlets these days. I could not disagree more with this general trend, and firmly believe in using strong properties for any object that I wish to have control over the lifespan. I personally think that Apple's preference for weak IBOutlets is dangerous, since the implied assumption that all views are children of the main view does not cover a significant number of cases, and this is not adequately explained with blanket weak property usage. So you may see lots of sample code with strong, and lots of sample code with weak, and neither is really wrong, per se. Like anything else, different choices have different consequences. I prefer, and recommend, the consequences that go along with using strong IBOutlet properties.
 
 >Swift comments: As we'll see in the IB and Storyboard chapters, IBOutlets are typically created as a forced-unwrapped optional. I could probably get away with making it non-optional here, but then I'd either have to create the table view here or deal with an initializer method, which is well beyond the point of this chapter.
 
@@ -159,7 +159,7 @@ In short, this code constrains the table view to match the size of the parent vi
 
 Here we have a nice blank table view. Notice that you can scroll it, you'll see the rows bounce when you let go, etc. But also notice there is nothing in it. Let's address that with some simple content.
 
-Recall from the overview discussion about customizing table views that we will be relying on the delegation pattern. And further recall that there are 2 required methods. One tells the table view how many rows there are, and the other provides a cell view for the table to display at a given index path. Let's go ahead and add those 2 methods, below viewDidLoad:
+Recall from the overview discussion about customizing table views that we will be relying on the delegation pattern. And further recall that there are 2 required methods. One tells the table view how many rows there are, and the other provides a cell view for the table to display at a given index path. Let's go ahead and add those 2 methods, below viewDidLoad. We'll cover what they do in greater detail later, so for now don't worry too much about those details.
 
 ```objc
 // Objective-C
@@ -179,7 +179,7 @@ Recall from the overview discussion about customizing table views that we will b
     
    [[cell textLabel] setText:@"Hello, World"];
     
-   return  cell;
+   return cell;
 }
 ```
 ```swift
@@ -227,11 +227,11 @@ let table = UITableView(frame: CGRectZero, style: .Plain)
 table.dataSource = self    
 ...
 ```
-As a reminder, UITableView offers 2 different delegate protocols, and has 2 different corresponding delegate properties. For right now we only need the data source one. So even though this particular property is _named_ somethingDelegate, it is still a delegate property. And we have now informed the table view that we want to use the view controller - self - as the delegate.
+As a reminder, UITableView offers 2 different delegate protocols, and has 2 different corresponding delegate properties. For right now we only need the data source one. So even though this particular property is not _named_ somethingDelegate, it is still a delegate property. And we have now informed the table view that we want to use the view controller - self - as the delegate.
 
 If you are on the ObjC path right now, then you have a warning on this new line. In Swift, you have an error on the same line. We have an issue either way, but Swift is a bit meaner about making sure that we address that issue. You actually can run the ObjC version right now, and you'll see that it works properly. But I'll hold off on a screen shot until we get Swift to a build-able point as well.
 
-What is the problem? We've implemented the required methods, so it should work (and does in ObjC). But here we have a warning or error. Well, the issue lies in the definition of this delegate property.
+What is the problem? We've implemented the required methods, so it should work (and does in ObjC). But we clearly have a warning or error. Well, the issue lies in the definition of this delegate property.
 
 ```objc
 // Objective-C
@@ -250,13 +250,11 @@ The property is defined as being any object that conforms to the UITableViewData
 ```objc
 // Objective-C
 
-// UITableView
 @interface ViewController () <UITableViewDataSource>
 ```
 ```swift
 // Swift
 
-// UITableView
 class ViewController: UIViewController, UITableViewDataSource
 ```
 That should clear up the issue in both languages, so we can now see our populated table view:
@@ -290,7 +288,7 @@ They defined it as a required method and they aren't messing around. This error 
 
 **Note**: make sure to uncomment that method before proceeding.
 
-At this point, all the table view does is display a handful of cells. If you tap a row, it will turn gray. Let's make it do something slightly more useful. The appropriate method was mentioned in the concepts chapter, and it is:
+At this point, all the table view does is display a handful of cells. If you tap a row, it will turn gray. Let's make it do something slightly more interesting. The appropriate method was mentioned in the concepts chapter, and it is:
 
 ```objc
 // Objective-C
@@ -351,6 +349,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 ```
 Both languages can now build the app, and tapping on the row should now deselect back to white, and you should see a message in the log telling you which row you tapped.
 
+We have now created a simple table view that displays a little bit of content and reacts to row taps. Let's recap what we did:
+* We created a UITableView object using a frame and a style.
+* We added that object to our view controller's view, and used Auto Layout to constrain it.
+* We declared that our view controller conforms to both of UITableView's delegate protocols.
+* We told the table view to use our view controller as the delegate for each protocol.
+* We implemented the required protocol methods, and also an optional protocol method.
+
+Clearly this table view doesn't do much at the moment, but this is pretty typical of how to work with table views. We will dive much deeper into some more interesting delegate methods, and talk about how to structure data and configure the display of that data in later chapters.
 
 ---
 From:

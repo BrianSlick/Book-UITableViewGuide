@@ -45,6 +45,8 @@
     return  cell;
 }
 
+#pragma mark - UITableViewDelegate Methods
+
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

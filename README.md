@@ -8,8 +8,9 @@ Chapters:
 * [Overview](00.Overview/Overview.md)
 * [Concepts and Terminology](01.Concepts/Concepts.md)
 * [Setup with Code](02.SetupWithCode/SetupWithCode.md)
-* Setup with Interface Builder
 * Setup with Storyboards
+* Setup with Interface Builder
+* UITableViewController
 * UITableViewCell Styles & Accessories
 * Cell Recycling
 * Simple Data Structure
@@ -33,4 +34,3 @@ Chapters:
 * Search UI
 * Working With Core Data
 * Supporting Accessibility
-* UITableViewController
