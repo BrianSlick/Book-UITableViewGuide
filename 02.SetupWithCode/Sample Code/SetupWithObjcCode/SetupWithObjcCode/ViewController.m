@@ -1,6 +1,6 @@
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -14,6 +14,7 @@
     
     UITableView *table = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     [table setDataSource:self];
+    [table setDelegate:self];
     [self setTableView:table];
     [[self view] addSubview:table];
     
@@ -42,6 +43,14 @@
     [[cell textLabel] setText:@"Hello, World"];
     
     return  cell;
+}
+
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSLog(@"Tapped row %ld", [indexPath row]);
 }
 
 @end

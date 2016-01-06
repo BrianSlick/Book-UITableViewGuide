@@ -231,6 +231,127 @@ As a reminder, UITableView offers 2 different delegate protocols, and has 2 diff
 
 If you are on the ObjC path right now, then you have a warning on this new line. In Swift, you have an error on the same line. We have an issue either way, but Swift is a bit meaner about making sure that we address that issue. You actually can run the ObjC version right now, and you'll see that it works properly. But I'll hold off on a screen shot until we get Swift to a build-able point as well.
 
+What is the problem? We've implemented the required methods, so it should work (and does in ObjC). But here we have a warning or error. Well, the issue lies in the definition of this delegate property.
+
+```objc
+// Objective-C
+
+// UITableView
+@property (nonatomic, weak) id< UITableViewDataSource > dataSource
+```
+```swift
+// Swift
+
+// UITableView
+weak var dataSource: UITableViewDataSource?
+```
+The property is defined as being any object that conforms to the UITableViewDataSource protocol. We _have_ implemented the required methods (which is why ObjC works), but we have _not_ declared that we conform to the protocol. That needs to be added to the class definition:
+
+```objc
+// Objective-C
+
+// UITableView
+@interface ViewController () <UITableViewDataSource>
+```
+```swift
+// Swift
+
+// UITableView
+class ViewController: UIViewController, UITableViewDataSource
+```
+That should clear up the issue in both languages, so we can now see our populated table view:
+
+![Populated table view](./images/setup_finished.png)
+
+As mentioned, we have implemented the 2 required protocol methods. Just to see what happens, let's comment one of them out:
+
+```objc
+// Objective-C
+
+//- (NSInteger)tableView:(UITableView *)tableView
+// numberOfRowsInSection:(NSInteger)section
+//{
+//   return 3;
+//}
+```
+```swift
+// Swift
+    
+//func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+//{
+//   return 3
+//}
+
+```
+In ObjC we again have a warning, and in Swift we again have a build error. But there is a key difference this time if we go ahead and run the ObjC version: it will crash:
+>Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[ViewController tableView:numberOfRowsInSection:]: unrecognized selector sent to instance 0x7fce99513a20'
+
+They defined it as a required method and they aren't messing around. This error message basically confirms that the table view tried to call the required method on the view controller, but as we commented it out, the view controller no longer implements that method.
+
+**Note**: make sure to uncomment that method before proceeding.
+
+At this point, all the table view does is display a handful of cells. If you tap a row, it will turn gray. Let's make it do something slightly more useful. The appropriate method was mentioned in the concepts chapter, and it is:
+
+```objc
+// Objective-C
+
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+   NSLog(@"Tapped row %ld", [indexPath row]);
+}
+
+```
+```swift
+// Swift
+    
+func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+{
+   tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+   print("Tapped row \(indexPath.row)")
+}
+
+```
+This will deselect the row causing it to revert to white, and will print a log message in the console. Run the app and test it out.
+
+Unfortunately nothing seems to be different. Tapping a row still turns it gray, and it remains gray until you tap another row, which in turn remains gray. And there is no log. What happened?
+
+Recall from the concepts chapter that UITableView defines 2 different protocols, and has 2 different delegate properties. We have conformed to one protocol and implemented the required methods, but this method is not defined in the one protocol we are currently conforming to. It's in the other one. So we need to indicate that our view controller will serve as the delegate for the other protocol also.
+
+```objc
+// Objective-C
+UITableView *table = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+[table setDataSource:self];
+[table setDelegate:self];
+...
+```
+```swift
+// Swift
+let table = UITableView(frame: CGRectZero, style: .Plain)
+table.dataSource = self
+table.delegate = self    
+...
+```
+We are now in the same situation we had before; Swift has an error, ObjC has a warning, but ObjC will again build and run properly. And the solution is the same: we must indicate that we conform to the required protocol:
+
+```objc
+// Objective-C
+
+// UITableView
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
+```
+```swift
+// Swift
+
+// UITableView
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
+```
+Both languages can now build the app, and tapping on the row should now deselect back to white, and you should see a message in the log telling you which row you tapped.
+
+
 ---
 From:
 [A Reasonably Complete Guide to UITableView](https://github.com/BriTerIdeas/Book-UITableViewGuide), by Brian Slick

@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     var tableView: UITableView!
     
@@ -10,6 +10,7 @@ class ViewController: UIViewController
         
         let table = UITableView(frame: CGRectZero, style: .Plain)
         table.dataSource = self
+        table.delegate = self
         tableView = table
         view.addSubview(table)
         
@@ -37,6 +38,13 @@ class ViewController: UIViewController
         cell.textLabel?.text = "Hello, World"
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        print("Tapped row \(indexPath.row)")
     }
 }
 
