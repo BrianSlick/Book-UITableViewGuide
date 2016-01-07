@@ -9,7 +9,7 @@ Chapters:
 * [Concepts and Terminology](01.Concepts/Concepts.md)
 * [Setup with Code](02.SetupWithCode/SetupWithCode.md)
 * [Setup with Storyboards](03.SetupWithStoryboards/SetupWithStoryboards.md)
-* Setup with Interface Builder
+* [Setup with Interface Builder](04.SetupWithInterfaceBuilder/SetupWithInterfaceBuilder.md)
 * UITableViewController
 * UITableViewCell Styles & Accessories
 * Cell Recycling

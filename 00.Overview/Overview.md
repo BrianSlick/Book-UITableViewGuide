@@ -22,7 +22,7 @@ I will cover some basics as necessary, but fundamentally this series is about ho
 
 Feel free to bring to my attention whenever I explain something poorly, but if the subject matter is not specific to UITableView, I will most likely direct you to more authoritative sources on those matters.
 
-I absolutely encourage feedback. I'm not going to write the whole thing in private and then publish once it is all done. I will publish as I go. The main README will contain a table of contents. As I write sections, I will link them up. The reminder will serve as an indication of where I want to go, and the likely order that I'll write them in. I'm happy to consider requests for additional subject matters that aren't listed. The best way to reach me is [@BrianSlick](http://twitter.com/BrianSlick) on Twitter, or email brianslick -at- mac -dot- com.
+I absolutely encourage feedback. I'm not going to write the whole thing in private and then publish once it is all done. I will publish as I go. The main README will contain a table of contents. As I write sections, I will link them up. The remainder will serve as an indication of where I want to go, and the likely order that I'll write them in. I'm happy to consider requests for additional subject matters that aren't listed. The best way to reach me is [@BrianSlick](http://twitter.com/BrianSlick) on Twitter, or email brianslick -at- mac -dot- com.
 
 ---
 From:
