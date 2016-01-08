@@ -11,7 +11,7 @@ Chapters:
 * [Setup with Storyboards](03.SetupWithStoryboards/SetupWithStoryboards.md)
 * [Setup with Interface Builder](04.SetupWithInterfaceBuilder/SetupWithInterfaceBuilder.md)
 * [UITableViewController](05.UITableViewController/UITableViewController.md)
-* UITableViewCell Styles & Accessories
+* [UITableViewCell Styles & Accessories](06.UITableViewCell/UITableViewCell.md)
 * Cell Recycling
 * Simple Data Structure
 * Handling Taps
