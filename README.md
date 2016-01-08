@@ -10,7 +10,7 @@ Chapters:
 * [Setup with Code](02.SetupWithCode/SetupWithCode.md)
 * [Setup with Storyboards](03.SetupWithStoryboards/SetupWithStoryboards.md)
 * [Setup with Interface Builder](04.SetupWithInterfaceBuilder/SetupWithInterfaceBuilder.md)
-* UITableViewController
+* [UITableViewController](05.UITableViewController/UITableViewController.md)
 * UITableViewCell Styles & Accessories
 * Cell Recycling
 * Simple Data Structure
