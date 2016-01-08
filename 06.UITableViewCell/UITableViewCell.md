@@ -99,7 +99,7 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
 
 ```
 
-First thing, we are increasing our row count to 4. Woo! This is so that we can see all four cell styles. Next, we are using the indexPath parameter, specifically its row component, to decide what kind of cell to show at each row. Recall that row indices start at 0, so the very first row we see will actually fall to the "default" cause since I did not specifically call out row 0.
+First thing, we are increasing our row count to 4. Woo! This is so that we can see all four cell styles. Next, we are using the indexPath parameter, specifically its row component, to decide what kind of cell to show at each row. Recall that row indices start at 0, so the very first row we see will actually fall to the "default" case since I did not specifically call out row 0.
 
 We've been putting our "Hello World" text into the cell's textLabel property this whole time. The cell also has a detailTextLabel property that we haven't needed until now, so I'm splitting the text across each property to that we can see what happens. Run the app, and observe:
 
@@ -123,7 +123,7 @@ Third row, **UITableViewCellStyleValue2** style
 
 Again we have two pieces of information, and again the primary text is on the left with the secondary on the right. There are differences in colors, alignment, and sizes. The text on the left is aligned to the right; the text on the right is aligned to the left. Blue text on the left, each font is slightly smaller than the Default text.
 
-I cannot find an active example in Apple's apps of this style. I believe it died in iOS 7. It was previously used primarily in the Contacts app, and you'll see it if you Google for older images of that app. Here, the text on the left is supposed to be more important, so it has a stronger font. In Contacts for example, the blue text might be "Home" and the black text "888-555-1212". So at a quick glance, you can quickly identify the number, and then if you need more specifics you can look to the left. If you can imagine this data as being in 2 columns on a spreadsheet, the border between columns would be right between the blue and black text. I personally feel that the left column became far too wide in iOS 7; it was not so dramatic before.
+I cannot find an active example in Apple's apps of this style. I believe it died in iOS 7. It was previously used primarily in the Contacts app, and you'll see it if you Google for older images of that app. Here, the text on the right is supposed to be more important, so it has a stronger font. In Contacts for example, the blue text might be "Home" and the black text "888-555-1212". So at a quick glance, you can quickly identify the number, and then if you need more specifics you can look to the left. If you can imagine this data as being in 2 columns on a spreadsheet, the border between columns would be right between the blue and black text. I personally feel that the left column became far too wide in iOS 7; it was not so dramatic before.
 
 Fourth row, **UITableViewCellStyleSubtitle** style
 
