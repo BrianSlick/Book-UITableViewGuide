@@ -12,7 +12,7 @@ Chapters:
 * [Setup with Interface Builder](04.SetupWithInterfaceBuilder/SetupWithInterfaceBuilder.md)
 * [UITableViewController](05.UITableViewController/UITableViewController.md)
 * [UITableViewCell Styles & Accessories](06.UITableViewCell/UITableViewCell.md)
-* Cell Recycling
+* [Cell Reuse](07.CellReuse/CellReuse.md)
 * Simple Data Structure
 * Handling Taps
 * Deleting Rows (Swipe-To-Delete)
