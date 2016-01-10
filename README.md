@@ -13,7 +13,7 @@ Chapters:
 * [UITableViewController](05.UITableViewController/UITableViewController.md)
 * [UITableViewCell Styles & Accessories](06.UITableViewCell/UITableViewCell.md)
 * [Cell Reuse](07.CellReuse/CellReuse.md)
-* Simple Data Structure
+* [Basic Data Structure](08.BasicDataStructure/BasicDataStructure.md)
 * Handling Taps
 * Deleting Rows (Swipe-To-Delete)
 * Adding Rows
