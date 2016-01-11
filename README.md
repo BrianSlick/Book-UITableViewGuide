@@ -14,7 +14,7 @@ Chapters:
 * [UITableViewCell Styles & Accessories](06.UITableViewCell/UITableViewCell.md)
 * [Cell Reuse](07.CellReuse/CellReuse.md)
 * [Basic Data Structure](08.BasicDataStructure/BasicDataStructure.md)
-* Handling Taps
+* [Handling Row Taps](09.HandlingRowTaps/HandlingRowTaps.md)
 * Deleting Rows (Swipe-To-Delete)
 * Adding Rows
 * Editing Mode

@@ -4,11 +4,9 @@ We've seen multiple ways of setting up a view controller for a table view, and w
 
 There are a variety of ways to structure your data to drive a table view, and I intend to cover several approaches in this series. But first I would like to focus on what NOT to do; or at least make certain to convey the downsides of a particular technique.
 
-Create a new iOS project, using the Single View Application template. Name it anything you want, like BasicDataStructure. Choose your preferred language, device doesn't really matter but let's go with iPhone, and you can turn off any of the other checkboxes like Core Data as they will not be used in this chapter.
+Create a new iOS project, using the Single View Application template. Name it anything you want, like BasicDataStructure. Choose your preferred language, device doesn't really matter but let's go with iPhone, and you can turn off any of the other checkboxes like Core Data as they will not be used in this chapter. Using your preferred technique, configure the provided view controller for table view use.
 
 And again, before we dive in here, this is an example of what NOT to do. So if you intend to read this chapter, and I hope you do, make sure to read the **whole** chapter. Don't stop early.
-
-Using your preferred technique, configure the provided view controller for table view use.
 
 Our intention is to list out the names of some colors. After you've got your file set up, make your data source methods look like this. And please, don't copy-paste this one, type it all in manually. I want it to hurt.
 
