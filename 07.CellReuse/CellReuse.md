@@ -188,19 +188,27 @@ In other words, we need to protect ourselves when the cache is empty. We do this
 ```swift
 // Swift
 {
-    var cell = tableView.dequeueReusableCellWithIdentifier("Default")
-    if (cell == nil)
+    var optionalCell = tableView.dequeueReusableCellWithIdentifier("Default")
+    if (optionalCell == nil)
     {
-        cell = UITableViewCell.init(style: .Default, reuseIdentifier: "Default")
+        optionalCell = UITableViewCell.init(style: .Default, reuseIdentifier: "Default")
         numberOfCellsCreated++
         print("Number of cells created: \(numberOfCellsCreated)")
     }
     
-    cell!.textLabel?.text = "Hello, World"
+    // At this point, we are certain we have a cell.
+    // Let's map to a new variable so that we don't have
+    // to deal with the optional past this point.
     
-    return cell!
+    let cell = optionalCell!
+    
+    cell.textLabel?.text = "Hello, World"
+    
+    return cell
 }
 ```
+>Swift comment: Since the dequeue... method returns an optional, the variable is defined as an optional, even though once we get past the if (cell == nil) part, we know for certain that we have a value; it is no longer nil. But, due to Swift rules, we still have to deal with it as an optional, which potentially means a bunch of ?'s and !'s along the way, and then the final return value cannot be an optional so we must force unwrap it. This is not a concern that ObjC has ever had, and at the time of this writing I'm not aware of Apple providing any update guidelines for how to handle this situation here in cellForRow in Swift. In the absence of guidance, I have made a decision that the cleanest way to handle this is to force-unwrap the optional into a new non-optional variable. I will continue to use this convention from here out, but I will be happy to consider alternative approaches.
+
 If cell is nil, we enter the clause and create one. If not, that means we got one from the cache, and we bypass the clause. Note that we use the same identifier in both places. In fact it is not a bad idea to use a separate variable to reduce errors:
 
 ```objc
@@ -228,17 +236,19 @@ If cell is nil, we enter the clause and create one. If not, that means we got on
 {
    let identifier = "Default"
    
-   var cell = tableView.dequeueReusableCellWithIdentifier(identifier)
-   if (cell == nil)
+   var optionalCell = tableView.dequeueReusableCellWithIdentifier(identifier)
+   if (optionalCell == nil)
    {
-      cell = UITableViewCell.init(style: .Default, reuseIdentifier: identifier)
+      optionalCell = UITableViewCell.init(style: .Default, reuseIdentifier: identifier)
       numberOfCellsCreated++
       print("Number of cells created: \(numberOfCellsCreated)")
    }
-    
-   cell!.textLabel?.text = "Hello, World"
    
-   return cell!
+   let cell = optionalCell!
+   
+   cell.textLabel?.text = "Hello, World"
+   
+   return cell
 }
 ```
 Now run the app and scroll around again. This is the highest I see on the iPhone 5S:
@@ -272,10 +282,10 @@ cell!.textLabel?.text = "Hello, World"
 
 if indexPath.row == 3
 {
-    cell?.accessoryType = .Checkmark
+    cell.accessoryType = .Checkmark
 }
 
-return cell!
+return cell
 ```
 Run the app, and sure enough there is our checkmark on the 4th row. So far so good.
 
@@ -320,11 +330,11 @@ else
 
 if indexPath.row == 3
 {
-    cell?.accessoryType = .Checkmark
+    cell.accessoryType = .Checkmark
 }
 else
 {
-    cell?.accessoryType = .None
+    cell.accessoryType = .None
 }
 ```
 When we get to the row we want, we add the checkmark. For **all other rows**, we turn the checkmark off.
@@ -363,25 +373,27 @@ return cell
 ```swift
 // Swift
 
-var cell = tableView.dequeue....
-if (cell == nil)
+var optionalCell = tableView.dequeue....
+if (optionalCell == nil)
 {
-   cell = UITableViewCell.init....
+   optionalCell = UITableViewCell.init....
    
    // A. If it needs to be the same on EACH cell, do it here
-   cell!.textLabel?.text = "Hello, World"
+   optionalCell!.textLabel?.text = "Hello, World"
 }
+
+let cell = optionalCell!
 
 // B. If it COULD be different on ANY cell, do it here.
 // This should be an if/else. If you stop at 'if', you're doing it wrong.
 
 if indexPath.row == 3
 {
-    cell?.accessoryType = .Checkmark
+    cell.accessoryType = .Checkmark
 }
 else
 {
-    cell?.accessoryType = .None
+    cell.accessoryType = .None
 }
 
 return cell

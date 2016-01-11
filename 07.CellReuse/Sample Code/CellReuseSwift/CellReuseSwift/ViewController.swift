@@ -16,26 +16,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     {
         let identifier = "Default"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(identifier)
-        if (cell == nil)
+        var optionalCell = tableView.dequeueReusableCellWithIdentifier(identifier)
+        if (optionalCell == nil)
         {
-            cell = UITableViewCell.init(style: .Default, reuseIdentifier: identifier)
+            optionalCell = UITableViewCell.init(style: .Default, reuseIdentifier: identifier)
             numberOfCellsCreated++
             print("Number of cells created: \(numberOfCellsCreated)")
         }
         
-        cell!.textLabel?.text = "Hello, World"
+        // At this point, we are certain we have a cell. So let's map to a new variable so that we don't have to deal with the optional past this point.
+        let cell = optionalCell!
+        
+        cell.textLabel?.text = "Hello, World"
 
         if indexPath.row == 3
         {
-            cell?.accessoryType = .Checkmark
+            cell.accessoryType = .Checkmark
         }
         else
         {
-            cell?.accessoryType = .None
+            cell.accessoryType = .None
         }
 
-        return cell!
+        return cell
     }
 }
 
