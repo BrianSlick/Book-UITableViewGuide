@@ -15,7 +15,7 @@ Chapters:
 * [Cell Reuse](07.CellReuse/CellReuse.md)
 * [Basic Data Structure](08.BasicDataStructure/BasicDataStructure.md)
 * [Handling Row Taps](09.HandlingRowTaps/HandlingRowTaps.md)
-* Deleting Rows (Swipe-To-Delete)
+* [Deleting Rows (Swipe-To-Delete)](10.DeletingRows/DeletingRows.md)
 * Adding Rows
 * Editing Mode
 * Reordering Rows
