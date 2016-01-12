@@ -1,3 +1,5 @@
+< [UITableViewController](../05.UITableViewController/UITableViewController.md) | [Cell Reuse](../07.CellReuse/CellReuse.md) >
+
 # UITableViewCell Styles & Accessories
 
 We have seen several different ways of setting up a view controller to support a table view. But aside from showing some "Hello World" text, we haven't really done anything with a visual flair. So let's take a first step on the path towards interesting table views by looking at the various customization options that are built in to UITableViewCell.
@@ -30,6 +32,7 @@ At last we will have different data source methods. They should look like this:
 
 ```objc
 // Objective-C
+
 // ViewController.m
 
 - (NSInteger)tableView:(UITableView *)tableView
@@ -64,10 +67,10 @@ At last we will have different data source methods. They should look like this:
     
     return cell;
 }
-
 ```
 ```swift
 // Swift
+
 // ViewController.swift
 
 func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -96,7 +99,6 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
     
     return cell
 }
-
 ```
 
 First thing, we are increasing our row count to 4. Woo! This is so that we can see all four cell styles. Next, we are using the indexPath parameter, specifically its row component, to decide what kind of cell to show at each row. Recall that row indices start at 0, so the very first row we see will actually fall to the "default" case since I did not specifically call out row 0.
@@ -135,24 +137,20 @@ The Subtitle style picked up a neat trick several versions ago. To see it in act
 
 ```objc
 // Objective-C
-// ViewController.m
 
 case 4:
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Subtitle2"];
     [[cell textLabel] setText:@"Hello"];
     return cell;
     break;
-
 ```
 ```swift
 // Swift
-// ViewController.swift
 
 case 4:
     cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "Subtitle2")
     cell.textLabel?.text = "Hello"
     return cell
-
 ```
 I only want to use the primary textLabel, so I'm immediately returning this cell before we set the detailTextLabel later in the method. Run the app.
 
@@ -166,7 +164,6 @@ As we've looked at these various app examples, you may have noticed some additio
 
 ```objc
 // Objective-C
-// ViewController.m
 
 switch ([indexPath row])
 {
@@ -193,11 +190,9 @@ switch ([indexPath row])
         [cell setAccessoryType:UITableViewCellAccessoryNone];
         break;
 }
-
 ```
 ```swift
 // Swift
-// ViewController.swift
 
 switch(indexPath.row)
 {
@@ -219,7 +214,6 @@ default:
     cell = UITableViewCell(style: .Default, reuseIdentifier: "Default")
     cell.accessoryType = .None
 }
-
 ```
 Run the app, and let's take a look:
 
@@ -247,21 +241,17 @@ UITableViewCell is a UIView subclass, so therefore it is a UIView. Views can hav
 
 ```objc
 // Objective-C
-// ViewController.m
 
 [[cell textLabel] setText:@"Hello"];
 [[cell detailTextLabel] setText:@"World"];
 [cell setAccessoryView:[[UISwitch alloc] init]];
-
 ```
 ```swift
 // Swift
-// ViewController.swift
 
 cell.textLabel?.text = "Hello"
 cell.detailTextLabel?.text = "World"
 cell.accessoryView = UISwitch()
-
 ```
 
 Run the app and take a look:
@@ -284,23 +274,19 @@ If you refer to the Sample Code folder for this chapter, in each project there a
 
 ```objc
 // Objective-C
-// ViewController.m
 
 [[cell textLabel] setText:@"Hello"];
 [[cell detailTextLabel] setText:@"World"];
 [cell setAccessoryView:[[UISwitch alloc] init]];
 [[cell imageView] setImage:[UIImage imageNamed:@"image"]];
-
 ```
 ```swift
 // Swift
-// ViewController.swift
 
 cell.textLabel?.text = "Hello"
 cell.detailTextLabel?.text = "World"
 cell.accessoryView = UISwitch()
 cell.imageView?.image = UIImage(named: "image")
-
 ```
 Run the app and take a look:
 
@@ -329,6 +315,9 @@ Notice what we did not do:
 
 All of the variety we have seen was provided by UITableViewCell itself, via customizable properties. We will get into more advanced forms of configuration later, but for now it is worth understanding and appreciating just how far you can go with a humble UITableViewCell. These layouts are established by Apple as standards, and when you adhere to standards, you make life easier on your users as they can instantly understand how your app works.
 
+< [UITableViewController](../05.UITableViewController/UITableViewController.md) | [Cell Reuse](../07.CellReuse/CellReuse.md) >
+
 ---
 From:
 [A Reasonably Complete Guide to UITableView](https://github.com/BriTerIdeas/Book-UITableViewGuide), by Brian Slick
+If you found this guide to be helpful, a [tip](http://bit.ly/AW4Cc) would be appreciated.

@@ -1,3 +1,5 @@
+< [Overview](../00.Overview/Overview.md) | [Setup with Code](../02.SetupWithCode/SetupWithCode.md) >
+
 # Concepts and Terminology
 
 Table views are among the most commonly used UI widgets in iOS. From your email inbox to your Twitter feed, your contacts list to your settings, table views are used just about everywhere. If you are looking at a list - short or very very long - of even vaguely related items, chances are pretty good that you're looking at a UITableView.
@@ -10,10 +12,12 @@ Let's start with the definition of UITableView, from the UIKit header files:
 
 ```objc
 // Objective-C
+
 @interface UITableView : UIScrollView <NSCoding>
 ```
 ```swift
 // Swift
+
 public class UITableView : UIScrollView, NSCoding
 ```
 
@@ -55,10 +59,12 @@ When it comes to customizing any object, the designer of that class has a number
 
 ```objc
 // Objective-C
+
 @interface RedLabel : UILabel
 ```
 ```swift
 // Swift
+
 public class RedLabel : UILabel
 ```
 This class would override something, probably drawRect, and instead of using black to draw the text, it would use red.
@@ -71,36 +77,41 @@ Instead, the designer of UILabel provided direct means to customize labels via p
 
 ```objc
 // Objective-C
+
 UILabel *aLabel = [[UILabel alloc] init];
 [aLabel setTextColor:[UIColor redColor]];
 ```
 ```swift
 // Swift
+
 let aLabel = UILabel()
 aLabel.textColor = UIColor.redColor()
 ```
 Not only is this easier, we don't have to know anything about how UILabel draws the actual text, and we aren't interfering with that process in any way, so we can't screw anything up which is certainly possible with the subclassing route. We are always using UILabel instances, and to change color we simply change one of these lines, or use the color picker in IB. And of course, labels have many options. Font size, font style, just to name a couple. If we had to make subclasses, this would get unwieldy very quickly, with my RedBoldLabel, my RedUnderlineLabel, my RedBoldUnderlineLabel, and so on. Yuck. So having configurable attributes like text color and font makes life much easier.
 
-How does this apply to table views? Well, hopefully the previous example has provided the reason why we wouldn't want to subclass. You can imagine having a 50ItemTableView, a 100ItemTableView, a 30ItemGroupedTableView, just to start. And then, how would you know how many items need to be in that table? In your Contacts, you add people, and you delete people. So would that be the 50ItemTableView or the 500ItemTableView? What if someone has 2000 contacts? And I've assumed that we don't have any sections to deal with. But Contacts does have them grouped. So I need a 26Section10RowsTableView? Do you know that many people with names beginning with Q or X? Subclassing is often not a very good solution when you don't know the answer in advance, and so is not a good solution here for table views.
+How does this apply to table views? Well, hopefully the previous example has provided the reason why we wouldn't want to subclass. You can imagine having a 50ItemTableView, a 100ItemTableView, a 30ItemGroupedTableView, just to start. And then, how would you know how many items need to be in that table? In your Contacts, you add people, and you delete people. So would that be the 50ItemTableView or the 500ItemTableView? What if someone has 2000 contacts? And I've assumed that we don't have any sections to deal with, but Contacts does have them grouped. So I need a 26Section10RowsTableView? Do you know that many people with names beginning with Q or X? Subclassing is often not a very good solution when you don't know the answer in advance, and so is not a good solution here for table views.
 
-Ok, so how about customizable attributes? Perhaps, and UITableView does indeed have some. But would this be a viable customization avenue for everything we might want to do with a table view? Let's consider for a moment. In Contacts, we have a section for each letter of the alphabet. So, 26 sections in English. And that assumes we use every letter. If a section would be empty, perhaps we wouldn't want to show anything there. Maybe now we're down to 20 sections. And Settings doesn't need that many sections; I count 9 on my phone. So clearly this number needs to vary, so perhaps that would make sense as a property:
+Ok, so how about customizable attributes? Perhaps, and UITableView does indeed have some. But would this be a viable customization avenue for everything we might want to do with a table view? Let's consider for a moment. In Contacts, we have a section for each letter of the alphabet. So, 26 sections in English. And that assumes we use every letter. If a section would be empty, perhaps we wouldn't want to show anything there. Maybe now we're down to 20 sections. And Settings doesn't need that many sections; I count 9 on my phone. Clearly this number needs to vary, so perhaps that would make sense as a property:
 
 ```objc
 // Objective-C
+
 UITableView *tableView = [[UITableView alloc] init];
 [tableView setNumberOfSections:26];
 ```
 ```swift
 // Swift
+
 let tableView = UITableView()
 tableView.numberOfSections = 26
 ```
-(Note: This is just for illustration purposes. UITableView actually does have this property, but it is read-only, so this code would not work as shown)
+>Note: This is just for illustration purposes. UITableView actually does have this property, but it is read-only, so this code would not work as shown.
 
 So far, so good. But then we reach a challenge. I know 20 people with names beginning with A, but only 5 beginning with B, then 12 beginning with C, and so on. I have to get this information into the table view's properties, but what would that look like?
 
 ```objc
 // Objective-C
+
 UITableView *tableView = [[UITableView alloc] init];
 [tableView setNumberOfSections:26];
 
@@ -111,6 +122,7 @@ UITableView *tableView = [[UITableView alloc] init];
 ```
 ```swift
 // Swift
+
 let tableView = UITableView()
 tableView.numberOfSections = 26
 
@@ -124,6 +136,7 @@ Oh boy. That's a lot of lines of code. And how many would there need to be? The 
 
 ```objc
 // Objective-C
+
 UITableView *tableView = [[UITableView alloc] init];
 [tableView setNumberOfSections:26];
 
@@ -138,6 +151,7 @@ UITableView *tableView = [[UITableView alloc] init];
 ```
 ```swift
 // Swift
+
 let tableView = UITableView()
 tableView.numberOfSections = 26
 
@@ -180,10 +194,12 @@ I can answer the question differently for each table view based on certain crite
 
 ```objc
 // Objective-C
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 ```
 ```swift
 // Swift
+
 optional func numberOfSectionsInTableView(_ tableView: UITableView) -> Int
 ```
 We will cover the specifics of what this means later. For right now, notice that I'm given a tableView parameter (so this code could support multiple table views if necessary), and I'm expected to return an integer. My answer for the question is the value I return.
@@ -199,11 +215,13 @@ DELEGATE (ME): There are 5 rows
 
 ```objc
 // Objective-C
+
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 ```
 ```swift
 // Swift
+
 func tableView(_ tableView: UITableView,
  numberOfRowsInSection section: Int) -> Int
 ```
@@ -217,11 +235,13 @@ The table view won't expect a response in this case, it is just letting me know 
 
 ```objc
 // Objective-C
+
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 ```
 ```swift
 // Swift
+
 optional func tableView(_ tableView: UITableView,
 didSelectRowAtIndexPath indexPath: NSIndexPath)
 ```
@@ -238,6 +258,7 @@ UITableView actually provides 2 delegate protocols: **UITableViewDelegate** and 
 
 ```objc
 // Objective-C
+
 @protocol UITableViewDataSource<NSObject>
 
 @required
@@ -254,6 +275,7 @@ UITableView actually provides 2 delegate protocols: **UITableViewDelegate** and 
 ```
 ```swift
 // Swift
+
 public protocol UITableViewDataSource : NSObjectProtocol {
    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -290,7 +312,9 @@ To summarize all of this:
 
 A considerable amount of the rest of the series will be spent studying the various DataSource and Delegate methods.
 
+< [Overview](../00.Overview/Overview.md) | [Setup with Code](../02.SetupWithCode/SetupWithCode.md) >
 
 ---
 From:
 [A Reasonably Complete Guide to UITableView](https://github.com/BriTerIdeas/Book-UITableViewGuide), by Brian Slick
+If you found this guide to be helpful, a [tip](http://bit.ly/AW4Cc) would be appreciated.

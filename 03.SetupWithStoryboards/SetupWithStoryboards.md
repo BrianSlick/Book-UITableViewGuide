@@ -1,7 +1,11 @@
+< [Setup with Code](../02.SetupWithCode/SetupWithCode.md) | [Setup with Interface Builder](../04.SetupWithInterfaceBuilder/SetupWithInterfaceBuilder.md) >
+
 # Setup With Storyboards
 
 If you jumped straight here hoping that meant you could avoid doing some code, I have some bad news. This chapter builds off of the [Setup With Code]
 (../02.SetupWithCode/SetupWithCode.md) chapter, so you do indeed need to read it first. That chapter establishes the basic minimum that you'll need to understand, and this chapter will only focus on what is changed by using a Storyboard instead of pure code. This chapter is not intended to train you on the use of Storyboards in general, so you will need to research elsewhere if the explanations here are inadequate.
+
+## Setup
 
 Create a new iOS project, using the Single View Application template. Name it anything you want, like SetupWithStoryboards. Choose your preferred language, device doesn't really matter but let's stick with iPhone, and you can turn off any of the other checkboxes like Core Data as they will not be used in this chapter.
 
@@ -9,6 +13,7 @@ Storyboards (and IB) provide the means to do certain tasks graphically instead o
 
 ```objc
 // Objective-C
+
 // ViewController.m
 
 #import "ViewController.h"
@@ -52,6 +57,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 ```
 ```swift
 // Swift
+
 // ViewController.swift
 
 import UIKit
@@ -91,9 +97,13 @@ We'll return to this file in a moment, but let's take a look at the Storyboard.
 
 ![Blank storyboard](./images/storyboards_initial.png)
 
+## Creation
+
 You see our blank view controller, and if you have the correct panel open on the right side, you can scroll through the list at the bottom and find the table view object. Grab one and drag it into the middle of the view controller. The size and position doesn't matter.
 
 ![Storyboard with a table view dragged in](./images/storyboards_drag_table.png)
+
+## Size and Position
 
 We will again use Auto Layout to size and position the table view, but rather than use some ugly confusing code again, we can do it here in the Storyboard. In the screen shot above, down at the lower right there are 4 icons. Make sure the table view is selected, and then hit the second button from the right. It looks like a Star Wars TIE Fighter.
 
@@ -106,6 +116,8 @@ Make your panel look like this one. This includes the following changes:
 * Next to "Update Frames", select "Items of New Constraints" in the menu.
 
 Finally, hit the "Add 4 Constraints" button. Once finished, the table view should fill the available space, and when selected you will see some blue lines around the perimeter.
+
+## Property
 
 Now we want to recreate the table view property that we did not carry over from the code chapter. We still want that property, but we're going to use the Storyboard to help us create it and establish a connection to our graphical table view object here.
 
@@ -133,6 +145,7 @@ This is creating a property, very similar to the one that we manually typed in t
 
 ```objc
 // Objective-C
+
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -142,6 +155,7 @@ This is creating a property, very similar to the one that we manually typed in t
 ```
 ```swift
 // Swift
+
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     @IBOutlet weak var tableView: UITableView!
@@ -149,6 +163,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 ```
 By default these will be created as weak outlets, and I mentioned briefly that I disagree with this default. But for our purposes here it doesn't really make a difference.
+
+## Data Source and Delegate
 
 If you run the app now, you will see a table view, but it will be blank. If you refer to the list of requirements in the code chapter, all we've done so far is to create a table view object, constrain it into position, and connect it to a property. And even though we have the delegate methods already implemented, the table is blank now for the same reason it was blank in the code chapter: we haven't told the table view who the delegate is. We can establish that relationship using the Storyboard.
 
@@ -168,6 +184,8 @@ In this case, we wish to connect to the view controller. So click in the circle 
 
 If you run the app now, it should have 3 rows of Hello World, and deselect rows after tapping them, same as the end of the code chapter.
 
+## Summary
+
 Let's review what remained the same:
 * All of the data source and delegate methods.
 * Protocol conformance.
@@ -185,6 +203,9 @@ If you compare the code files from the code chapter and what we have here, the p
 
 Overall, we removed code, and that's one of the goals of using IB/Storyboards. And we have taken an element that is visual, and switched it from creating it with text to creating it in a visual editor. I personally prefer to deal with visual things visually, when I have the choice. But, as I stated previously, IB/Storyboards is fundamentally about object creation. Once the objects are created, there isn't much else you can do in IB/Storyboards. This is proven by the fact that the various delegate methods are identical in each case. They do not care how the table view was created.
 
+< [Setup with Code](../02.SetupWithCode/SetupWithCode.md) | [Setup with Interface Builder](../04.SetupWithInterfaceBuilder/SetupWithInterfaceBuilder.md) >
+
 ---
 From:
 [A Reasonably Complete Guide to UITableView](https://github.com/BriTerIdeas/Book-UITableViewGuide), by Brian Slick
+If you found this guide to be helpful, a [tip](http://bit.ly/AW4Cc) would be appreciated.

@@ -1,3 +1,5 @@
+< [Concepts and Terminology](../01.Concepts/Concepts.md) | [Setup with Storyboards](../03.SetupWithStoryboards/SetupWithStoryboards.md) >
+
 # Setup With Code
 
 We're going to create and configure a simple table view 3 different ways: code-only, Interface Builder, and Storyboards. This chapter will focus on code-only, and the other options will be explored separately. If I write each chapter as a purely standalone unit, there will be a lot of repetition as the delegate methods are only implemented via code. Rather than copy-paste a bunch of text, I will do as much code stuff as necessary here, and then in the other setup chapters try to only refer to the aspects that are different. So even if you are brand new and are only comfortable with Storyboards, you will need to read this chapter too, and I will include a note saying likewise in that chapter.
@@ -8,6 +10,8 @@ Fire up Xcode and let's begin.
 
 Even though this is the code-only chapter, with modern versions of Xcode Apple _really_ wants you to use Storyboards, so much that you can't even create a project anymore without them. So since it can't be avoided, we'll just go ahead and accept that, and for purposes of this chapter simply ignore the Storyboard.
 
+## Setup
+
 Create a new iOS project, using the Single View Application template. Name it anything you want, like SetupWithCode. Choose your preferred language, device doesn't really matter but let's go with iPhone, and you can turn off any of the other checkboxes like Core Data as they will not be used in this chapter.
 
 As I said, we are ignoring the Storyboard for now. We will do everything in the ViewController class that was automatically created. For ObjC, we will be dealing exclusively with the .m file.
@@ -16,6 +20,7 @@ First things first, let's clear out any unnecessary boilerplate so that we can f
 
 ```objc
 // Objective-C
+
 // ViewController.m
 
 #import "ViewController.h"
@@ -36,6 +41,7 @@ First things first, let's clear out any unnecessary boilerplate so that we can f
 ```
 ```swift
 // Swift
+
 // ViewController.swift
 
 import UIKit
@@ -50,10 +56,13 @@ class ViewController: UIViewController
 
 ```
 
+## Property
+
 Next, we pretty much will always want the table view to stay alive as long as this view controller is alive. So it will make sense to have a table view property. This will also let us reference the table view object from other methods as needed.
 
 ```objc
 // Objective-C
+
 @interface ViewController ()
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -63,6 +72,7 @@ Next, we pretty much will always want the table view to stay alive as long as th
 ```
 ```swift
 // Swift
+
 class ViewController: UIViewController
 {
     var tableView: UITableView!
@@ -73,22 +83,27 @@ class ViewController: UIViewController
 
 >Swift comments: As we'll see in the IB and Storyboard chapters, IBOutlets are typically created as a forced-unwrapped optional. I could probably get away with making it non-optional here, but then I'd either have to create the table view here or deal with an initializer method, which is well beyond the point of this chapter.
 
+## Creation
+
 Now we're ready to create our table view object. As with most view objects, if you aren't doing it in IB or Storyboard, then most likely the appropriate place to do so is in viewDidLoad. So that's what we'll use here.
 
 UITableView has a designated initializer that looks like this:
 
 ```objc
 // Objective-C
+
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
 ```
 ```swift
 // Swift
+
 public init(frame: CGRect, style: UITableViewStyle)
 ```
 The table view is created with a rect and a style. Recall from the concepts chapter that our style choices are grouped or plain. Let's use plain. We will be using auto layout to position the table view, so for now we can init the table view with CGRectZero.
 
 ```objc
 // Objective-C
+
 - (void)viewDidLoad
 {
    [super viewDidLoad];
@@ -100,6 +115,7 @@ The table view is created with a rect and a style. Recall from the concepts chap
 ```
 ```swift
 // Swift
+
 override func viewDidLoad()
 {
    super.viewDidLoad()
@@ -111,10 +127,13 @@ override func viewDidLoad()
 ```
 At this point, we have created a table view object, assigned it to the property, and added it to the view controller's view. You could run the app if you wanted to, but you won't see anything size CGRectZero has a size of 0x0.
 
+## Size and Position
+
 In order to make the table view fill the screen on any device, we're going to use Auto Layout. I will not be covering very much about how Auto Layout works here. So if you don't understand the following code, don't sweat it. Just copy-paste and move on. But if you have been avoiding learning or using Auto Layout, I highly recommend it, and would advise you to check it out.
 
 ```objc
 // Objective-C
+
 - (void)viewDidLoad
 {
    [super viewDidLoad];
@@ -134,6 +153,7 @@ In order to make the table view fill the screen on any device, we're going to us
 ```
 ```swift
 // Swift
+
 override func viewDidLoad()
 {
    super.viewDidLoad()
@@ -158,6 +178,8 @@ In short, this code constrains the table view to match the size of the parent vi
 ![Empty table view](./images/setup_first_run.png)
 
 Here we have a nice blank table view. Notice that you can scroll it, you'll see the rows bounce when you let go, etc. But also notice there is nothing in it. Let's address that with some simple content.
+
+## Data Source
 
 Recall from the overview discussion about customizing table views that we will be relying on the delegation pattern. And further recall that there are 2 required methods. One tells the table view how many rows there are, and the other provides a cell view for the table to display at a given index path. Let's go ahead and add those 2 methods, below viewDidLoad. We'll cover what they do in greater detail later, so for now don't worry too much about those details.
 
@@ -217,12 +239,14 @@ Hrm. We've implemented the necessary methods, but nothing seems to have changed.
 
 ```objc
 // Objective-C
+
 UITableView *table = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
 [table setDataSource:self];
 ...
 ```
 ```swift
 // Swift
+
 let table = UITableView(frame: CGRectZero, style: .Plain)
 table.dataSource = self    
 ...
@@ -288,6 +312,8 @@ They defined it as a required method and they aren't messing around. This error 
 
 **Note**: make sure to uncomment that method before proceeding.
 
+## Delegate
+
 At this point, all the table view does is display a handful of cells. If you tap a row, it will turn gray. Let's make it do something slightly more interesting. The appropriate method was mentioned in the concepts chapter, and it is:
 
 ```objc
@@ -321,6 +347,7 @@ Recall from the concepts chapter that UITableView defines 2 different protocols,
 
 ```objc
 // Objective-C
+
 UITableView *table = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
 [table setDataSource:self];
 [table setDelegate:self];
@@ -328,6 +355,7 @@ UITableView *table = [[UITableView alloc] initWithFrame:CGRectZero style:UITable
 ```
 ```swift
 // Swift
+
 let table = UITableView(frame: CGRectZero, style: .Plain)
 table.dataSource = self
 table.delegate = self    
@@ -349,6 +377,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 ```
 Both languages can now build the app, and tapping on the row should now deselect back to white, and you should see a message in the log telling you which row you tapped.
 
+## Summary
+
 We have now created a simple table view that displays a little bit of content and reacts to row taps. Let's recap what we did:
 * We created a UITableView object using a frame and a style.
 * We added that object to our view controller's view, and used Auto Layout to constrain it.
@@ -358,7 +388,9 @@ We have now created a simple table view that displays a little bit of content an
 
 Clearly this table view doesn't do much at the moment, but this is pretty typical of how to work with table views. We will dive much deeper into some more interesting delegate methods, and talk about how to structure data and configure the display of that data in later chapters.
 
+< [Concepts and Terminology](../01.Concepts/Concepts.md) | [Setup with Storyboards](../03.SetupWithStoryboards/SetupWithStoryboards.md) >
+
 ---
 From:
 [A Reasonably Complete Guide to UITableView](https://github.com/BriTerIdeas/Book-UITableViewGuide), by Brian Slick
-
+If you found this guide to be helpful, a [tip](http://bit.ly/AW4Cc) would be appreciated.

@@ -1,3 +1,5 @@
+< [Handling Row Taps](../09.HandlingRowTaps/HandlingRowTaps.md) | >
+
 # Deleting Rows
 
 Thus far in our series, we've dealt with static data. We pre-populate some data, show that data in our table view, and call it a day. In this chapter, we take the first step in allowing the user to modify that data. We'll separate different kinds of modifications into separate chapters. This one will focus on deleting rows, and thus deleting data.
@@ -56,7 +58,6 @@ We will again use the list of colors that we saw in the [Basic Data Structure](.
 }
 
 @end
-
 ```
 ```swift
 // Swift
@@ -427,6 +428,9 @@ This is our first introduction to a couple of themes that will be repeated in th
 
 This is a big reason why there are so many delegate methods between UITableViewDelegate and UITableViewDataSource. One method to enable, another to disable, possibly still more to provide additional customizations. Table views do a lot, so it takes a lot of methods to support them.
 
+< [Handling Row Taps](../09.HandlingRowTaps/HandlingRowTaps.md) | >
+
 ---
 From:
 [A Reasonably Complete Guide to UITableView](https://github.com/BriTerIdeas/Book-UITableViewGuide), by Brian Slick
+If you found this guide to be helpful, a [tip](http://bit.ly/AW4Cc) would be appreciated.

@@ -1,3 +1,5 @@
+< [UITableViewCell Styles & Accessories](../06.UITableViewCell/UITableViewCell.md) | [Basic Data Structure](../08.BasicDataStructure/BasicDataStructure.md) >
+
 # Table Cell Reuse
 
 As we saw in the [Styles & Accessories](../06.UITableViewCell/UITableViewCell.md) chapter, UITableViewCells are initialized with 2 parameters:
@@ -17,6 +19,8 @@ We explored the style parameter in that chapter. Now let's talk about the reuseI
 This topic is fundamentally about performance, specifically scrolling performance. Now I don't really have a great example of something that we can quickly wire up that will bring your average device to its knees when we try to scroll. So I will have to ask you take some of this on faith. What I show in this chapter will improve your scrolling performance - if you are not already following the techniques - even if you don't think you notice any issues.
 
 So let's begin with a project that will demonstrate the reason for concern, if not being able to display the performance issue itself.
+
+## Setup
 
 Create a new iOS project, using the Single View Application template. Name it anything you want, like CellReuse. Choose your preferred language, device doesn't really matter but let's go with iPhone, and you can turn off any of the other checkboxes like Core Data as they will not be used in this chapter.
 
@@ -117,24 +121,31 @@ At this point, the key concepts to take away are:
 * The table view will only request enough cells to service the immediate need. It does NOT request every possible cell that it _might_ need right away.
 * In the absence of the technique I'm about to show, you will just keep on creating brand new table view objects as needed, which could easily be hundreds of cells, quite conceivably thousands. That's a lot of object creation, and we'd like to avoid or at least reduce that.
 
+## Cell Cache
+
 In order to reduce the need to create all of these cells, the designers of UITableView provided a caching mechanism. Instead of having to instantly create a brand new cell, you can first ask the table view if it has any cells already available. That question takes the form of this method in UITableView:
 
 ```objc
 // Objective-C
+
 - (nullable UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 ```
 ```swift
 // Swift
+
 public func dequeueReusableCellWithIdentifier(identifier: String) -> UITableViewCell?
 ```
 The first thing to notice here is the return value. In ObjC, this is nullable; in Swift it is an optional. And the reason is simple: the cache could be empty. If this cache is empty, the table view cannot give you back a table cell, and you will get back nil. Why would it be empty? Well, most commonly this will occur at first launch (or first display of this screen). You don't start off with a pre-populated cache. You have to have some objects available to put into the cache, and those won't be ready right away.
 
 The other thing to notice is the input parameter, a string called "identifier". Basically, the table view can have several caches. Each cache will be identified by name, and that name is this "identifier" parameter. This is the same name that we will use to create the cell with, in the reuseIdentifier parameter.
 
+## Dequeueing Cells
+
 Generally speaking, the first thing we want to do is ask the table view if there are any cells available in the cache for a given identifier. That looks like this:
 
 ```objc
 // Objective-C
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -145,6 +156,7 @@ Generally speaking, the first thing we want to do is ask the table view if there
 ```
 ```swift
 // Swift
+
 func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 {
     let cell = tableView.dequeueReusableCellWithIdentifier("Default")
@@ -165,10 +177,13 @@ And sure enough, in the documentation for cellForRowAtIndexPath, we find:
 
 What this is saying, and what we have just proven for ourselves, is that we MUST return a valid UITableViewCell object in this method.
 
+## Cell Guarantee
+
 In other words, we need to protect ourselves when the cache is empty. We do this by checking for nil, and if we find it, we create a brand new cell at that moment. That check looks like this:
 
 ```objc
 // Objective-C
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -187,6 +202,8 @@ In other words, we need to protect ourselves when the cache is empty. We do this
 ```
 ```swift
 // Swift
+
+func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 {
     var optionalCell = tableView.dequeueReusableCellWithIdentifier("Default")
     if (optionalCell == nil)
@@ -213,6 +230,7 @@ If cell is nil, we enter the clause and create one. If not, that means we got on
 
 ```objc
 // Objective-C
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -233,6 +251,8 @@ If cell is nil, we enter the clause and create one. If not, that means we got on
 ```
 ```swift
 // Swift
+
+func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 {
    let identifier = "Default"
    
@@ -260,6 +280,8 @@ No matter how much I scroll, back and forth all day long, I've gone from creatin
 What is happening behind the scenes is that when a cell is no longer needed on screen, the UITableView will place it into an appropriate cache. Then when a new row needs to be displayed, that cell can be pulled right back out of the cache and shown on screen again, without needing to create a new one. And it turns out that you don't need to create too many more than are ever visible at one time, plus a small buffer. I said before I could see 13 rows, so a buffer of 1 is apparently sufficient. I would not be surprised to see 15 or 16 cells created total, but the designers felt that the buffer size we are witnessing was sufficient.
 
 So, hopefully I don't require too much justification to claim that creating only 14 objects will be higher performance than creating hundreds of objects. That seems inherently obvious.
+
+## Recycling Behavior
 
 But we have introduced a new consideration. Let's say that we want the 4th row to show a checkmark. Easy enough, simply add this code before returning the cell:
 
@@ -404,8 +426,13 @@ I've placed two comments in there, **A** and **B**.
 
 **B** is where you should do anything that COULD be different on any cell. It could be every other cell, it could be most cells, it could be only 1 out of 1000 cells. If it needs to be different under any circumstances, it needs to be outside of the if (cell == nil){} clause. And you almost certainly will need to set it up as an if/else structure. If you want even rows to have red text, and odd rows to have black text, you'll 'if' one and 'else' the other. Maybe one section has > indicators, another section has "i" accessories. Set up a conditional statement for that. Whatever you DO in the if case, you have to UNDO in the else case. In this example, we applied the checkmark in the if case. We removed the checkmark in the else case.
 
+## Summary
+
 When using cell recycling, and in most (but not all) cases you will want to, this is the structure you have to follow in order to get proper display of your cells. At any point in the future, if your problem can be described as "it looks great at first, but then goes screwy when I scroll", the root cause is most likely somewhere here. It may sound complicated, in exchange you get a real performance gain when scrolling. The more complex your cell is, the more gain you will have by using cell recycling.
+
+< [UITableViewCell Styles & Accessories](../06.UITableViewCell/UITableViewCell.md) | [Basic Data Structure](../08.BasicDataStructure/BasicDataStructure.md) >
 
 ---
 From:
 [A Reasonably Complete Guide to UITableView](https://github.com/BriTerIdeas/Book-UITableViewGuide), by Brian Slick
+If you found this guide to be helpful, a [tip](http://bit.ly/AW4Cc) would be appreciated.

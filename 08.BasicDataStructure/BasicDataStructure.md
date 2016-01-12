@@ -1,12 +1,18 @@
+< [Cell Reuse](../07.CellReuse/CellReuse.md) | [Handling Row Taps](../09.HandlingRowTaps/HandlingRowTaps.md) >
+
 # Basic Data Structure
 
 We've seen multiple ways of setting up a view controller for a table view, and we've explored some built-in options to customize the visuals of that table view. But so far we've only really dealt with "Hello World"-caliber data, so let's step our game up a bit here. In the real world, we deal with more than a single string repeated in every cell.
 
 There are a variety of ways to structure your data to drive a table view, and I intend to cover several approaches in this series. But first I would like to focus on what NOT to do; or at least make certain to convey the downsides of a particular technique.
 
+## Setup
+
 Create a new iOS project, using the Single View Application template. Name it anything you want, like BasicDataStructure. Choose your preferred language, device doesn't really matter but let's go with iPhone, and you can turn off any of the other checkboxes like Core Data as they will not be used in this chapter. Using your preferred technique, configure the provided view controller for table view use.
 
 And again, before we dive in here, this is an example of what NOT to do. So if you intend to read this chapter, and I hope you do, make sure to read the **whole** chapter. Don't stop early.
+
+## The Hard Way
 
 Our intention is to list out the names of some colors. After you've got your file set up, make your data source methods look like this. And please, don't copy-paste this one, type it all in manually. I want it to hurt.
 
@@ -226,6 +232,8 @@ Some things can only be learned through experience, but I hope I have convinced 
 
 In summary: So, so many ways for your various delegate and data source methods to get out of sync with each other. It is a situation just begging for bugs.
 
+## The Easy Way
+
 Fortunately there are better ways to set the data up that avoid all (or at least most) of these pitfalls. Many ways, actually, and I intend to cover several of them in this series, but for now let us look at a humble array. Add an array property to our class:
 
 ```objc
@@ -360,11 +368,15 @@ func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSInde
 ```
 That sound you just heard was the last of our if/else if code dying a painful death. Not only have we again removed a lot of code, but we have again improved the quality. This method retrieves the exact same value that cellForRow does (how it does so could be further improved, but we'll cover that in a later chapter), so we can be confident that the log value will be correct. No more getting out of sync just because we forgot to make a change somewhere.
 
+## Summary
+
 More than half of this chapter was spent telling you what **not** to do. And that ratio isn't an accident; notice that doing things in a good way - I won't even say a GREAT way, simply a good way - is so much easier than doing things the bad way. We've established a clear delineation between our data and our delegate methods. If the data needs to be changed, you go to one spot, change it, and that's all you have to do. The table view delegate methods don't care what strings the array has in it, so they no longer need to be modified when the strings change. That's a win for you, and it's a win for your coworker making changes while you're on vacation.
 
 Observe how much we simplified our delegate methods once we established a proper data structure. And that's going to be a good guideline going forward: If you can put the work into defining your data structure up front with your table view in mind - and this may mean running some preprocessing logic on your raw data - you can dramatically streamline and simplify your delegate methods.
 
+< [Cell Reuse](../07.CellReuse/CellReuse.md) | [Handling Row Taps](../09.HandlingRowTaps/HandlingRowTaps.md) >
 
 ---
 From:
 [A Reasonably Complete Guide to UITableView](https://github.com/BriTerIdeas/Book-UITableViewGuide), by Brian Slick
+If you found this guide to be helpful, a [tip](http://bit.ly/AW4Cc) would be appreciated.

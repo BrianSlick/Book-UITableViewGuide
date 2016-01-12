@@ -1,3 +1,5 @@
+[Concepts and Terminology](../01.Concepts/Concepts.md) >
+
 # Overview
 
 There are a lot of UITableView tutorials out there. I've written several myself. So why do we need another one? Fair question. A lot of time has passed since I wrote my first set. Techniques and technologies have moved on, and I'm a much better coder with greater understanding today than I was at the time. Primarily I'm interested in updating my older material, expanding areas that I perhaps glossed over, and trying to shine a light on areas that don't get a lot of coverage otherwise. But at a fundamental level, I learn best by teaching, so I'd like to flex some new muscles by writing about techniques I don't use as often as others.
@@ -24,7 +26,9 @@ Feel free to bring to my attention whenever I explain something poorly, but if t
 
 I absolutely encourage feedback. I'm not going to write the whole thing in private and then publish once it is all done. I will publish as I go. The main README will contain a table of contents. As I write sections, I will link them up. The remainder will serve as an indication of where I want to go, and the likely order that I'll write them in. I'm happy to consider requests for additional subject matters that aren't listed. The best way to reach me is [@BrianSlick](http://twitter.com/BrianSlick) on Twitter, or email brianslick -at- mac -dot- com.
 
+[Concepts and Terminology](../01.Concepts/Concepts.md) >
+
 ---
 From:
 [A Reasonably Complete Guide to UITableView](https://github.com/BriTerIdeas/Book-UITableViewGuide), by Brian Slick
-
+If you found this guide to be helpful, a [tip](http://bit.ly/AW4Cc) would be appreciated.
