@@ -38,7 +38,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
-    // MARK: - UITableViewDelegate Methods
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        return indexPath.row != 0
+    }
 
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
     {
@@ -47,5 +50,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             contents.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
+    }
+    
+    // MARK: - UITableViewDelegate Methods
+
+    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String?
+    {
+        return "BOOM!"
     }
 }

@@ -42,7 +42,11 @@
     return cell;
 }
 
-#pragma mark - UITableViewDelegate Methods
+- (BOOL)tableView:(UITableView *)tableView
+canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [indexPath row] != 0;
+}
 
 - (void)tableView:(UITableView *)tableView
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
@@ -53,6 +57,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         [[self contents] removeObjectAtIndex:[indexPath row]];
         [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
+}
+
+#pragma mark - UITableViewDelegate Methods
+
+- (NSString *)tableView:(UITableView *)tableView
+titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"BOOM!";
 }
 
 @end
