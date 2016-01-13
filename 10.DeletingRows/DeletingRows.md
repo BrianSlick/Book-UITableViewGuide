@@ -336,7 +336,7 @@ func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableV
 }
 ```
 Run the app, swipe-to-delete, and... crash.
->Invalid update: invalid number of rows in section 0.  The number of rows contained in an existing section after the update (6) must be equal to the number of rows contained in that section before the update (6), plus or minus the number of rows inserted or deleted from that section (0 inserted, 1 deleted) and plus or minus the number of rows moved into or out of that section (0 moved in, 0 moved out).'
+>Invalid update: invalid number of rows in section 0.  The number of rows contained in an existing section after the update (6) must be equal to the number of rows contained in that section before the update (6), plus or minus the number of rows inserted or deleted from that section (0 inserted, 1 deleted) and plus or minus the number of rows moved into or out of that section (0 moved in, 0 moved out).
 
 This is wordy, but UITableView really does have some of the best error messages in all of UIKit. In short, what this is saying is that we told the table view there were 6 rows originally, then we told it to delete 1, but then we're still telling it there are 6 rows. Recall that the way we tell the table view how many rows it has is with the numberOfRowsInSection method. That method is returning the count of the array, which is 6. During this row deletion process, the table view will bounce off of that method again to find out what the new total is. The table view believes, correctly, that the answer should be 5, but we are still providing a value of 6. The table view doesn't like this discrepancy, so it crashes.
 

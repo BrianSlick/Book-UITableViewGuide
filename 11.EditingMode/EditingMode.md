@@ -1,4 +1,4 @@
-< [Deleting Rows (Swipe-To-Delete)](../10.DeletingRows/DeletingRows.md) | >
+< [Deleting Rows (Swipe-To-Delete)](../10.DeletingRows/DeletingRows.md) | [Adding Rows](../12.AddingRows/AddingRows.md) >
 
 # Editing Mode
 
@@ -500,7 +500,7 @@ Run the app now, and you'll find that pressing the button does indeed toggle edi
 
 We have now learned of the existence of an editing mode in table views (and view controllers) and we've learned how to toggle it on and off. We've seen that editing mode can have accessory types and views independent of the normal mode. And we've seen how to implement a widely-used UI for toggling editing mode. Given that most table views show data that the user is intended to change, this is an important skill to have in your bag of tricks.
 
-< [Deleting Rows (Swipe-To-Delete)](../10.DeletingRows/DeletingRows.md) | >
+< [Deleting Rows (Swipe-To-Delete)](../10.DeletingRows/DeletingRows.md) | [Adding Rows](../12.AddingRows/AddingRows.md) >
 
 ---
 From:
