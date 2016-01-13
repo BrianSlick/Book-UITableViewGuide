@@ -1,4 +1,4 @@
-< [Handling Row Taps](../09.HandlingRowTaps/HandlingRowTaps.md) | >
+< [Handling Row Taps](../09.HandlingRowTaps/HandlingRowTaps.md) | [Editing Mode](../11.EditingMode/EditingMode.md) >
 
 # Deleting Rows
 
@@ -428,7 +428,7 @@ This is our first introduction to a couple of themes that will be repeated in th
 
 This is a big reason why there are so many delegate methods between UITableViewDelegate and UITableViewDataSource. One method to enable, another to disable, possibly still more to provide additional customizations. Table views do a lot, so it takes a lot of methods to support them.
 
-< [Handling Row Taps](../09.HandlingRowTaps/HandlingRowTaps.md) | >
+< [Handling Row Taps](../09.HandlingRowTaps/HandlingRowTaps.md) | [Editing Mode](../11.EditingMode/EditingMode.md) >
 
 ---
 From:

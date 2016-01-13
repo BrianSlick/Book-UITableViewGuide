@@ -16,8 +16,8 @@ Chapters:
 * [Basic Data Structure](08.BasicDataStructure/BasicDataStructure.md)
 * [Handling Row Taps](09.HandlingRowTaps/HandlingRowTaps.md)
 * [Deleting Rows (Swipe-To-Delete)](10.DeletingRows/DeletingRows.md)
+* [Editing Mode](11.EditingMode/EditingMode.md)
 * Adding Rows
-* Editing Mode
 * Reordering Rows
 * Multiple Row Selection
 * Standard Section Headers and Footers
