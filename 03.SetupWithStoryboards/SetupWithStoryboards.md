@@ -103,6 +103,12 @@ You see our blank view controller, and if you have the correct panel open on the
 
 ![Storyboard with a table view dragged in](./images/storyboards_drag_table.png)
 
+As long as we're here, let's take a look at one of the options that is provided graphically via the Storyboard/IB. Recall from the code chapter that we instantiate a table view object with 2 parameters, a frame and a style. Obviously the frame is being defined by our graphic object, but we can mess with the style here, too. Select the table view, then find the settings in the upper right.
+
+![Table view style menu in Storyboard](./images/storyboards_table_style.png)
+
+There is a Style option, and using the menu we can choose between Plain and Grouped here.
+
 ## Size and Position
 
 We will again use Auto Layout to size and position the table view, but rather than use some ugly confusing code again, we can do it here in the Storyboard. In the screen shot above, down at the lower right there are 4 icons. Make sure the table view is selected, and then hit the second button from the right. It looks like a Star Wars TIE Fighter.
