@@ -18,7 +18,7 @@ Chapters:
 * [Deleting Rows (Swipe-To-Delete)](10.DeletingRows/DeletingRows.md)
 * [Editing Mode](11.EditingMode/EditingMode.md)
 * [Adding Rows](12.AddingRows/AddingRows.md)
-* Reordering Rows
+* [Reordering Rows](13.ReorderingRows/ReorderingRows.md)
 * Multiple Row Selection
 * Standard Section Headers and Footers
 * Multiple Sections: Array of Arrays

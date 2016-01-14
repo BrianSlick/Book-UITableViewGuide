@@ -1,4 +1,4 @@
-< [Editing Mode](../11.EditingMode/EditingMode.md) | >
+< [Editing Mode](../11.EditingMode/EditingMode.md) | [Reordering Rows](../13.ReorderingRows/ReorderingRows.md) >
 
 # Adding Rows
 
@@ -264,7 +264,7 @@ I suppose it is conceivable that you could tap this button and then insert a _di
 Adding rows works about the same way as deleting rows does, just in reverse. In each case, we need to modify our data prior to performing the row change transaction. We added a piece of data, then we inserted a row. The only new element here was the need to manually construct a NSIndexPath object.
 
 
-< [Editing Mode](../11.EditingMode/EditingMode.md) | >
+< [Editing Mode](../11.EditingMode/EditingMode.md) | [Reordering Rows](../13.ReorderingRows/ReorderingRows.md) >
 
 ---
 From:
