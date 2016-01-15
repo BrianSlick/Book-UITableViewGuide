@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h6K-Mp-zX5">
+                                <rect key="frame" x="277" y="28" width="47" height="30"/>
+                                <state key="normal" title="Reload"/>
+                                <connections>
+                                    <action selector="reloadButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="05M-ts-cQg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUO-kD-Lj7">
+                                <rect key="frame" x="535" y="28" width="45" height="30"/>
+                                <state key="normal" title="Delete"/>
+                                <connections>
+                                    <action selector="deleteButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bd5-9X-6Zz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dos-WR-D9e">
+                                <rect key="frame" x="20" y="28" width="30" height="30"/>
+                                <state key="normal" title="Edit"/>
+                                <connections>
+                                    <action selector="editButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yLJ-jO-jvX"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Eju-cy-PxK">
+                                <rect key="frame" x="0.0" y="66" width="600" height="534"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="iOF-m4-lub"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="guc-98-Se6"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="AUO-kD-Lj7" secondAttribute="trailing" constant="20" symbolic="YES" id="2AE-0Q-Qad"/>
+                            <constraint firstItem="Eju-cy-PxK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8zu-OR-C2u"/>
+                            <constraint firstAttribute="trailing" secondItem="Eju-cy-PxK" secondAttribute="trailing" id="GB0-Wv-JQc"/>
+                            <constraint firstItem="h6K-Mp-zX5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="Idh-YD-uET"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Eju-cy-PxK" secondAttribute="bottom" id="PPd-zs-4ZD"/>
+                            <constraint firstItem="Eju-cy-PxK" firstAttribute="top" secondItem="h6K-Mp-zX5" secondAttribute="bottom" constant="8" symbolic="YES" id="RCu-H9-r2D"/>
+                            <constraint firstItem="h6K-Mp-zX5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="X4x-o4-qtX"/>
+                            <constraint firstItem="h6K-Mp-zX5" firstAttribute="centerY" secondItem="Dos-WR-D9e" secondAttribute="centerY" id="dI5-0f-IGz"/>
+                            <constraint firstItem="Dos-WR-D9e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="mkg-Tu-9B1"/>
+                            <constraint firstItem="AUO-kD-Lj7" firstAttribute="centerY" secondItem="Dos-WR-D9e" secondAttribute="centerY" id="swb-wI-mKL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="deleteButton" destination="AUO-kD-Lj7" id="NkJ-8d-URQ"/>
+                        <outlet property="tableView" destination="Eju-cy-PxK" id="PYD-ZG-W7O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

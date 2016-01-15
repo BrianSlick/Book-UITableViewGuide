@@ -1,4 +1,4 @@
-< [Adding Rows](../12.AddingRows/AddingRows.md) | >
+< [Adding Rows](../12.AddingRows/AddingRows.md) | [Multiple Row Selection](../14.MultipleRowSelection/MultipleRowSelection.md) >
 
 # Reordering Rows
 
@@ -355,7 +355,7 @@ I'm dragging the Blue row as high as I possibly can, but the Red row won't budge
 This pretty much completes our data modification topics. We've added, removed, and now reordered rows. In each case we implemented a delegate method to enable the feature, a second delegate method to refine the behavior, and occasionally a third method to even further control those behaviors. And in each case, whatever we do to the table view, we must also do to our data.
 
 
-< [Adding Rows](../12.AddingRows/AddingRows.md) | >
+< [Adding Rows](../12.AddingRows/AddingRows.md) | [Multiple Row Selection](../14.MultipleRowSelection/MultipleRowSelection.md) >
 
 ---
 From:

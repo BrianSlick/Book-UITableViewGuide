@@ -19,7 +19,7 @@ Chapters:
 * [Editing Mode](11.EditingMode/EditingMode.md)
 * [Adding Rows](12.AddingRows/AddingRows.md)
 * [Reordering Rows](13.ReorderingRows/ReorderingRows.md)
-* Multiple Row Selection
+* [Multiple Row Selection](14.MultipleRowSelection/MultipleRowSelection.md)
 * Standard Section Headers and Footers
 * Multiple Sections: Array of Arrays
 * Multiple Sections: Dictionary of Arrays
