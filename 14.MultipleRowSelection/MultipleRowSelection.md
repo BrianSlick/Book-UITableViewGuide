@@ -475,7 +475,7 @@ Yes, this was a long way to go simply to illustrate multiple selection. But I fe
 
 ## Second Project Setup
 
-As mentioned, UITableView gained the multi-selection capability in iOS 5, which means we had 4 OS versions to handle things manually before then. If you'll recall from the [UITableViewCell Styles & Accessories](../06.UITableViewCell/UITableViewCell.md) chapter, we saw that one of the provided accessories is a checkmark. This is how we did checklists in the old days, and it remains a viable option today.
+As mentioned, UITableView gained the multi-selection capability in iOS 5, which means there were several OS versions where we had to handle things manually before then. If you'll recall from the [UITableViewCell Styles & Accessories](../06.UITableViewCell/UITableViewCell.md) chapter, we saw that one of the provided accessories is a checkmark. This is how we did checklists in the old days, and it remains a viable option today.
 
 Create a new iOS project, using the Single View Application template. Name it anything you want, like MultipleCheckmarks. Choose your preferred language, device doesn't really matter but let's go with iPhone, and you can turn off any of the other checkboxes like Core Data as they will not be used in this chapter. Using your preferred technique, configure the provided view controller for table view use. But leave some room above the table view for a button. We will again use a Reload button for this one, but we're not going to bother with the Edit and Delete buttons. I will leave the incorporation of those functions as an exercise for the reader.
 
@@ -767,7 +767,7 @@ You can check and uncheck as many rows as you want. While you're playing, hit th
 This is a much older technique than what was shown in the first project, but it remains a perfectly viable means of accomplishing the goal. A couple of differences relative to the first project to note:
 
 * We are not relying on the table view to keep track of selection state at all
-* This means we really don't care about "selected" or "deselected" from the table's point of view. We simple treat each row as a button press, and go handle our own logic internally
+* This means we really don't care about "selected" or "deselected" from the table's point of view. We simply treat each row as a button press, and go handle our own logic internally
 * With the built-in capability, we are largely limited to Apple's UI. Here we have much more flexibility. The simple checkmark used here could instead be a much more radical visual indicator.
 
 ## Overall Summary
