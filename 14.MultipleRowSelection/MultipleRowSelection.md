@@ -1,4 +1,4 @@
-< [Reordering Rows](../13.ReorderingRows/ReorderingRows.md) | >
+< [Reordering Rows](../13.ReorderingRows/ReorderingRows.md) | [Section Headers and Footers](../15.SectionHeadersFooters/SectionHeadersFooters.md) >
 
 # Multiple Row Selection
 
@@ -777,7 +777,7 @@ The first project uses the table view to keep track of the selection. The second
 Fundamentally, it is not uncommon for a user to need the ability to manipulate multiple items at once. Either of the techniques shown here provide a user-friendly way to enable that, and both are common enough that very few users will be confused by either option.
 
 
-< [Reordering Rows](../13.ReorderingRows/ReorderingRows.md) | >
+< [Reordering Rows](../13.ReorderingRows/ReorderingRows.md) | [Section Headers and Footers](../15.SectionHeadersFooters/SectionHeadersFooters.md) >
 
 ---
 From:
