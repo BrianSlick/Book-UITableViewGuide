@@ -53,6 +53,12 @@ titleForFooterInSection:(NSInteger)section
 
 #pragma mark - UITableViewDelegate Methods
 
+- (CGFloat)tableView:(UITableView *)tableView
+heightForHeaderInSection:(NSInteger)section
+{
+    return 12;
+}
+
 - (void)tableView:(UITableView *)tableView
 willDisplayHeaderView:(UIView *)view
        forSection:(NSInteger)section
@@ -60,6 +66,13 @@ willDisplayHeaderView:(UIView *)view
     if ([view isKindOfClass:[UITableViewHeaderFooterView class]])
     {
         UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)view;
+        
+        UILabel *label = [headerView textLabel];
+        [label setFont:[UIFont boldSystemFontOfSize:8.0]];
+        [label setTextAlignment:NSTextAlignmentCenter];
+        [label setTextColor:[UIColor yellowColor]];
+        
+        [[headerView backgroundView] setBackgroundColor:[UIColor blueColor]];
     }
 }
 

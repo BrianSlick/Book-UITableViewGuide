@@ -45,11 +45,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: - UITableViewDelegate Methods
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return 12
+    }
+    
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
     {
         if let headerView = view as? UITableViewHeaderFooterView
         {
-            print(headerView)
+            if let label = headerView.textLabel
+            {
+                label.font = UIFont.boldSystemFontOfSize(8.0)
+                label.textAlignment = .Center
+                label.textColor = UIColor.yellowColor()
+            }
+            
+            headerView.backgroundView?.backgroundColor = UIColor.blueColor()
         }
     }
 }
