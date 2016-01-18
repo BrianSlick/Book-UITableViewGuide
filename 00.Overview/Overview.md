@@ -24,6 +24,8 @@ I will cover some basics as necessary, but fundamentally this series is about ho
 
 Feel free to bring to my attention whenever I explain something poorly, but if the subject matter is not specific to UITableView, I will most likely direct you to more authoritative sources on those matters.
 
+Each chapter is placed into a separate directory in the repository. In addition to the main text, when applicable there will also be a "Sample Code" folder. I will make a Swift version and an Objective-C version whenever samples are needed. Unless otherwise noted, these will be completed projects, and I will not normally provide starter projects. Each chapter will have the instructions and required code in the main text to get started.
+
 I absolutely encourage feedback. I'm not going to write the whole thing in private and then publish once it is all done. I will publish as I go. The main README will contain a table of contents. As I write sections, I will link them up. The remainder will serve as an indication of where I want to go, and the likely order that I'll write them in. I'm happy to consider requests for additional subject matters that aren't listed. The best way to reach me is [@BrianSlick](http://twitter.com/BrianSlick) on Twitter, or email brianslick -at- mac -dot- com.
 
 [Concepts and Terminology](../01.Concepts/Concepts.md) >

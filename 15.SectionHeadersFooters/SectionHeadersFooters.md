@@ -1,4 +1,4 @@
-< [Multiple Row Selection](../14.MultipleRowSelection/MultipleRowSelection.md) | >
+< [Multiple Row Selection](../14.MultipleRowSelection/MultipleRowSelection.md) | [Multiple Sections: Basic Data Structure](../16.SectionsBasicDataStructure/SectionsBasicDataStructure.md) >
 
 # Standard Section Headers and Footers
 
@@ -435,7 +435,7 @@ func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSe
 
 In this chapter, we introduced the standard section header and footer views. We populated them with simple strings, and saw some logic for determining which sections displayed them. Finally, we explored how to customize the built-in views. As mentioned, we will get into higher forms of customization in a later chapter. For now, simply be aware of what is available through the use of delegate methods.
 
-< [Multiple Row Selection](../14.MultipleRowSelection/MultipleRowSelection.md) | >
+< [Multiple Row Selection](../14.MultipleRowSelection/MultipleRowSelection.md) | [Multiple Sections: Basic Data Structure](../16.SectionsBasicDataStructure/SectionsBasicDataStructure.md) >
 
 ---
 From:

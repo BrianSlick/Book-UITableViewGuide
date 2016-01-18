@@ -21,7 +21,7 @@ Chapters:
 * [Reordering Rows](13.ReorderingRows/ReorderingRows.md)
 * [Multiple Row Selection](14.MultipleRowSelection/MultipleRowSelection.md)
 * [Multiple Sections: Standard Section Headers and Footers](15.SectionHeadersFooters/SectionHeadersFooters.md)
-* Multiple Sections: Array of Arrays
+* [Multiple Sections: Basic Data Structure](16.SectionsBasicDataStructure/SectionsBasicDataStructure.md)
 * Multiple Sections: Dictionary of Arrays
 * Deleting Rows in Sectioned Tables
 * Reordering Rows in Sectioned Tables
