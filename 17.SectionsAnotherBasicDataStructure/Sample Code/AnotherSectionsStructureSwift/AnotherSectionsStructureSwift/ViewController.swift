@@ -3,34 +3,48 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     @IBOutlet var tableView: UITableView!
-    var contents = [[String]]()
+    var contents = [String: [String]]()
     var headers = [String]()
-
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        let fruitKey = "Fruit"
+        let vegetableKey = "Vegetable"
+        let sweetKey = "Sweet"
         
         let fruits = [ "Apple", "Banana", "Grape", "Melon" ]
         let vegetables = [ "Carrot", "Celery", "Asparagus" ]
         let sweets = [ "Chocolate", "Pie" ]
         
-        contents = [ fruits, vegetables, sweets ]
-        headers = [ "Fruits", "Vegetables", "Sweet" ]
+        contents[fruitKey] = fruits
+        contents[vegetableKey] = vegetables
+        contents[sweetKey] = sweets
+        
+        headers.append(fruitKey)
+        headers.append(vegetableKey)
+        headers.append(sweetKey)
     }
     
     func itemAtIndexPath(indexPath: NSIndexPath) -> String
     {
-        let groupArray = contents[indexPath.section]
-        let text = groupArray[indexPath.row]
+        let key = headers[indexPath.section]
+        if let groupArray = contents[key]
+        {
+            let text = groupArray[indexPath.row]
+            
+            return text
+        }
         
-        return text
+        return ""
     }
     
     // MARK: - UITableViewDataSource Methods
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        return contents.count
+        return headers.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
@@ -40,9 +54,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        let groupArray = contents[section]
+        let key = headers[section]
+        if let groupArray = contents[key]
+        {
+            return groupArray.count
+        }
         
-        return groupArray.count
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell

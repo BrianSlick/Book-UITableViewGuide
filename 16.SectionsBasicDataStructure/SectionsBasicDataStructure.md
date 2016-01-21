@@ -1,4 +1,4 @@
-< [Section Headers and Footers](../15.SectionHeadersFooters/SectionHeadersFooters.md) | >
+< [Section Headers and Footers](../15.SectionHeadersFooters/SectionHeadersFooters.md) | [Another Basic Data Structure](../17.SectionsAnotherBasicDataStructure/SectionsAnotherBasicDataStructure.md) >
 
 # Multiple Sections: Basic Data Structure
 
@@ -259,7 +259,7 @@ Let's build our data structure first, in viewDidLoad. And we need our familiar a
 // Swift
 
 @IBOutlet var tableView: UITableView!
-var contents = [Array<String>]()
+var contents = [[String]]()
 
 override func viewDidLoad()
 {
@@ -267,7 +267,7 @@ override func viewDidLoad()
     
     let fruits = [ "Apple", "Banana", "Grape" ]
     let vegetables = [ "Carrot", "Celery" ]
-    let sweets = [ "Chocoloate" ]
+    let sweets = [ "Chocolate" ]
     
     contents = [ fruits, vegetables, sweets ]
 }
@@ -366,7 +366,7 @@ NSArray *sweets = @[ @"Chocolate", @"Pie" ];
 
 let fruits = [ "Apple", "Banana", "Grape", "Melon" ]
 let vegetables = [ "Carrot", "Celery", "Asparagus" ]
-let sweets = [ "Chocoloate", "Pie" ]
+let sweets = [ "Chocolate", "Pie" ]
 ```
 Run the app and see the new contents. Notice that to add data, all we did was... add data. We didn't have to go swimming through all kinds of if/else statements in numerous delegate methods. Once the data structure is defined, and the delegate methods are setup to use that data structure, then the amount of data involved really doesn't cause any other changes. If we want 50 fruits now, all we do is modify that one line of code.
 
@@ -420,7 +420,7 @@ override func viewDidLoad()
     
     let fruits = [ "Apple", "Banana", "Grape", "Melon" ]
     let vegetables = [ "Carrot", "Celery", "Asparagus" ]
-    let sweets = [ "Chocoloate", "Pie" ]
+    let sweets = [ "Chocolate", "Pie" ]
     
     contents = [ fruits, vegetables, sweets ]
     headers = [ "Fruits", "Vegetables", "Sweet" ]
@@ -539,7 +539,7 @@ And it's also worth pointing out that we didn't wind up with a great technique h
 
 The bottom line is that you want your delegate methods to work with your data structure, not _define_ your data structure.
 
-< [Section Headers and Footers](../15.SectionHeadersFooters/SectionHeadersFooters.md) | >
+< [Section Headers and Footers](../15.SectionHeadersFooters/SectionHeadersFooters.md) | [Another Basic Data Structure](../17.SectionsAnotherBasicDataStructure/SectionsAnotherBasicDataStructure.md) >
 
 ---
 From:

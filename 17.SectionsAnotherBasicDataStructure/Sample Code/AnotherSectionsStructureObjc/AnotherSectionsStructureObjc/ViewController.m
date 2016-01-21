@@ -3,8 +3,8 @@
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray *contents;
-@property (nonatomic, strong) NSArray *headers;
+@property (nonatomic, strong) NSMutableDictionary *contents;
+@property (nonatomic, strong) NSMutableArray *headers;
 
 @end
 
@@ -14,18 +14,33 @@
 {
     [super viewDidLoad];
     
+    NSMutableDictionary *items = [NSMutableDictionary dictionary];
+    NSMutableArray *keys = [NSMutableArray array];
+    
+    NSString *fruitKey = @"Fruits";
+    NSString *vegetableKey = @"Vegetable";
+    NSString *sweetKey = @"Sweets";
+    
     NSArray *fruits = @[ @"Apple", @"Banana", @"Grape", @"Melon" ];
     NSArray *vegetables = @[ @"Carrot", @"Celery", @"Asparagus" ];
     NSArray *sweets = @[ @"Chocolate", @"Pie" ];
     
-    [self setContents:@[ fruits, vegetables, sweets ]];
+    [items setObject:fruits forKey:fruitKey];
+    [items setObject:vegetables forKey:vegetableKey];
+    [items setObject:sweets forKey:sweetKey];
     
-    [self setHeaders:@[ @"Fruits", @"Vegetables", @"Sweets" ]];
+    [keys addObject:fruitKey];
+    [keys addObject:vegetableKey];
+    [keys addObject:sweetKey];
+
+    [self setContents:items];
+    [self setHeaders:keys];
 }
 
 - (NSString *)itemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *groupArray = [[self contents] objectAtIndex:[indexPath section]];
+    NSString *key = [[self headers] objectAtIndex:[indexPath section]];
+    NSArray *groupArray = [[self contents] objectForKey:key];
     NSString *text = [groupArray objectAtIndex:[indexPath row]];
     
     return text;
@@ -35,7 +50,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self contents] count];
+    return [[self headers] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView
@@ -47,7 +62,8 @@ titleForHeaderInSection:(NSInteger)section
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *groupArray = [[self contents] objectAtIndex:section];
+    NSString *key = [[self headers] objectAtIndex:section];
+    NSArray *groupArray = [[self contents] objectForKey:key];
     
     return [groupArray count];
 }

@@ -22,7 +22,8 @@ Chapters:
 * [Multiple Row Selection](14.MultipleRowSelection/MultipleRowSelection.md)
 * [Multiple Sections: Standard Section Headers and Footers](15.SectionHeadersFooters/SectionHeadersFooters.md)
 * [Multiple Sections: Basic Data Structure](16.SectionsBasicDataStructure/SectionsBasicDataStructure.md)
-* Multiple Sections: Dictionary of Arrays
+* [Multiple Sections: Another Basic Data Structure](17.SectionsAnotherBasicDataStructure/SectionsAnotherBasicDataStructure.md)
+* Multiple Sections: Data Processing
 * Deleting Rows in Sectioned Tables
 * Reordering Rows in Sectioned Tables
 * Custom Cells with Interface Builder
