@@ -1,4 +1,4 @@
-< [Basic Data Structure](../16.SectionsBasicDataStructure/SectionsBasicDataStructure.md) | >
+< [Basic Data Structure](../16.SectionsBasicDataStructure/SectionsBasicDataStructure.md) | [Multiple Sections: Custom Model Objects](../18.SectionsCustomModelObjects/SectionsCustomModelObjects.md) >
 
 # Multiple Sections: Another Basic Data Structure
 
@@ -409,7 +409,7 @@ I've only discussed the example of removing data here, but what about rearrangin
 We have now explored 2 distinct data structures for displaying exactly the same contents in a table view. And that really does matter for us as developers: there are a variety of ways of writing our code that don't affect the final outcome of what the user sees. What matters is understanding the pros/cons of any given approach, and making the best decision given what the table view needs to do, and what our future data needs might be.
 
 
-< [Basic Data Structure](../16.SectionsBasicDataStructure/SectionsBasicDataStructure.md) | >
+< [Basic Data Structure](../16.SectionsBasicDataStructure/SectionsBasicDataStructure.md) | [Multiple Sections: Custom Model Objects](../18.SectionsCustomModelObjects/SectionsCustomModelObjects.md) >
 
 ---
 From:

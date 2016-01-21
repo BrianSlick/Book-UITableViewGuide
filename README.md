@@ -23,6 +23,7 @@ Chapters:
 * [Multiple Sections: Standard Section Headers and Footers](15.SectionHeadersFooters/SectionHeadersFooters.md)
 * [Multiple Sections: Basic Data Structure](16.SectionsBasicDataStructure/SectionsBasicDataStructure.md)
 * [Multiple Sections: Another Basic Data Structure](17.SectionsAnotherBasicDataStructure/SectionsAnotherBasicDataStructure.md)
+* [Multiple Sections: Custom Model Objects](18.SectionsCustomModelObjects/SectionsCustomModelObjects.md)
 * Multiple Sections: Data Processing
 * Deleting Rows in Sectioned Tables
 * Reordering Rows in Sectioned Tables
