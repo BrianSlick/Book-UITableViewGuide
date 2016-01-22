@@ -24,9 +24,11 @@ Chapters:
 * [Multiple Sections: Basic Data Structure](16.SectionsBasicDataStructure/SectionsBasicDataStructure.md)
 * [Multiple Sections: Another Basic Data Structure](17.SectionsAnotherBasicDataStructure/SectionsAnotherBasicDataStructure.md)
 * [Multiple Sections: Custom Model Objects](18.SectionsCustomModelObjects/SectionsCustomModelObjects.md)
-* Multiple Sections: Data Processing
-* Deleting Rows in Sectioned Tables
-* Reordering Rows in Sectioned Tables
+* [Multiple Sections: Data Processing](19.SectionsDataProcessing/SectionsDataProcessing.md)
+* Multiple Sections: Section Index Titles
+* Multiple Sections: Deleting Rows
+* Multiple Sections: Adding Rows
+* Multiple Sections: Reordering Rows
 * Custom Cells with Interface Builder
 * Custom Cells with Storyboards
 * Non-Uniform Table Structures
