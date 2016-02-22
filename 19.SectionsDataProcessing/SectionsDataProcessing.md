@@ -1,4 +1,4 @@
-< [Custom Model Objects](../18.SectionsCustomModelObjects/SectionsCustomModelObjects.md) | >
+< [Custom Model Objects](../18.SectionsCustomModelObjects/SectionsCustomModelObjects.md) | [Section Index Titles](../20.SectionIndexTitles/SectionIndexTitles.md) >
 
 # Multiple Sections: Data Processing
 
@@ -385,7 +385,7 @@ Run the app and verify that the items are now listed alphabetically within each 
 
 Unless you control the source of the data, it is highly unlikely that the data will be provided in a form that makes table view setup easy. It is very common to perform some kind of logic on the data to prepare it for your needs. And it is equally common that the solution is going to require a reasonable amount of work. There aren't 1-liner solutions for all of these problems. You will need to assess what form your data is in, what form you would like it to take, and write code that maps from one to the other. It is also quite possible that you will need to map in both directions, so that you can return modified data in a way that the source expects, but that's beyond the scope of this series.
 
-< [Custom Model Objects](../18.SectionsCustomModelObjects/SectionsCustomModelObjects.md) | >
+< [Custom Model Objects](../18.SectionsCustomModelObjects/SectionsCustomModelObjects.md) | [Section Index Titles](../20.SectionIndexTitles/SectionIndexTitles.md) >
 
 ---
 From:
